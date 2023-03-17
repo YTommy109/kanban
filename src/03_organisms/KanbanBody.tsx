@@ -1,15 +1,12 @@
 import { FC } from "react";
 import { styled } from 'goober'
+import { Lane3 } from '@/04_templates/Lane'
 import { KanbanLane } from "@/02_molecules/KanbanLane";
 
 const Details = styled('details')`
   summary {
     font-size:              1.5rem;
     line-height:            2rem;
-  }
-  .cols3 {
-    display:                grid;
-    grid-template-columns:  repeat(3, 1fr);
   }
 `
 
@@ -25,7 +22,7 @@ export const KanbanBody: FC<Props> = (
   return (
     <Details open>
       <summary>{banner}</summary>
-      <div className="cols3">
+      <Lane3>
         <KanbanLane
           title="ToDo"
           data={data.filter((it) => it.state === "ToDo").sort((it1, it2) =>
@@ -47,7 +44,7 @@ export const KanbanBody: FC<Props> = (
           )}
           setFocusId={setFocusId}
         />
-      </div>
+      </Lane3>
     </Details>
   );
 };

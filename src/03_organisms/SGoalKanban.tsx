@@ -1,20 +1,19 @@
-import { useState } from "react";
-import { Lane3 } from "@/04_templates/Lane"
+import { useState, useMemo } from "react";
+import { Lane2_200 } from "@/04_templates/Lane"
 import { KanbanBody } from "@/03_organisms/KanbanBody";
 import { ItemDetail } from "@/02_molecules/ItemDetail";
 import sgoal from "@/_data/sprintgoal.json";
 
 export default function SGoalKanban() {
-  const [sgoals] = useState<BacklogItem[]>(sgoal);
-  const [focusId, setFocusId] = useState<string | null>(null);
-  const focusItem = sgoals.find((it) => it.id === focusId);
+  const [focusId, setFocusId] = useState<string|null>(null);
+  const focusItem = useMemo(() => sgoal.find((it) => it.id === focusId), [focusId])
 
-  return <Lane3>
+  return <Lane2_200>
     <KanbanBody
-      data={sgoals}
+      data={sgoal}
       banner="Sprint Goals"
       setFocusId={setFocusId}
     />
     {focusItem && <ItemDetail item={focusItem} />}
-  </Lane3>
+  </Lane2_200>
 }
