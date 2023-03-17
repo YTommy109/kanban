@@ -8,8 +8,8 @@ const Li = styled('li')`
 `
 
 type Props = {
-  article: BacklogItem;
-  handleClick: () => void;
+  article:BacklogItem;
+  handleClick?:() => void;
 };
 
 export const KanbanItem: FC<Props> = ({ article, handleClick }) =>

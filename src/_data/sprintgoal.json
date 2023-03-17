@@ -37,7 +37,7 @@
         "parentId": "c9bfe4fc-b542-42fe-98bb-5b9a9ca36637"
     },
     {
-        "id": "97916ff1-1612-436b-9628-1ae85a507210",
+        "id": "a53aed4c-97ed-47b4-b2af-2df0292753ec",
         "title": "実績をグラフでトレースしたい",
         "dod": [
             "Product バーンアップチャートが見れること",
@@ -49,7 +49,7 @@
         "parentId": "c9bfe4fc-b542-42fe-98bb-5b9a9ca36637"
     },
     {
-        "id": "97916ff1-1612-436b-9628-1ae85a507210",
+        "id": "ca36000a-43fa-4284-acbb-741acd10f8ae",
         "title": "データを永続化し、自分で登録したい",
         "dod": [],
         "state": "ToDo",

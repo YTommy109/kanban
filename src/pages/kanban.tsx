@@ -1,8 +1,5 @@
 import Head from 'next/head'
-import PGoalKanban from "@/03_organisms/PGoalKanban";
-import SGoalKanban from "@/03_organisms/SGoalKanban";
-import { ProductKanban } from "@/03_organisms/ProductKanban";
-import SprintKanban from "@/03_organisms/SprintKanban";
+import { Kanban } from "@/03_organisms/Kanban";
 import { Main } from '@/04_templates/MainPanel';
 
 export default function Home() {
@@ -15,10 +12,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Main>
-        <PGoalKanban />
-        <SGoalKanban />
-        <ProductKanban />
-        <SprintKanban />
+        <h1>Planning</h1>
+        <Kanban />
       </Main>
     </>
   )

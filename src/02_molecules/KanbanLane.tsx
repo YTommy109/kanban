@@ -13,9 +13,9 @@ const Section = styled('section')`
 `
 
 type Props = {
-  title: string;
-  data: BacklogItem[];
-  setFocusId: (v: string) => void;
+  title:string;
+  data:BacklogItem[];
+  setFocusId?:(v: string) => void;
 };
 
 export const KanbanLane: FC<Props> = ({ title, data, setFocusId }) =>
@@ -25,9 +25,9 @@ export const KanbanLane: FC<Props> = ({ title, data, setFocusId }) =>
       <ul>
         {data.map((item) => (
           <KanbanItem
-            key = {item.id}
-            article={item}
-            handleClick={() => setFocusId(item.id)}
+            key         = {item.id}
+            article     = {item}
+            handleClick = {() => setFocusId ? setFocusId(item.id) : null}
           />
         ))}
       </ul>
