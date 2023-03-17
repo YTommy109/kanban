@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "dayjs": "^1.11.7",
     "goober": "^2.1.10",
     "goober-autoprefixer": "^1.2.3",
     "next": "latest",
@@ -15,6 +16,10 @@
   "devDependencies": {
     "@types/node": "^18.7.7",
     "@types/react": "^18.0.17",
-    "typescript": "^4.7.4"
+    "typescript": "^5.0.2"
+  },
+  "volta": {
+    "node": "18.15.0",
+    "yarn": "1.22.19"
   }
 }
