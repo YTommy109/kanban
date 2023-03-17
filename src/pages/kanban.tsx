@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import PGoalKanban from "@/03_organisms/PGoalKanban";
 import SGoalKanban from "@/03_organisms/SGoalKanban";
-import ProductKanban from "@/03_organisms/ProductKanban";
+import { ProductKanban } from "@/03_organisms/ProductKanban";
 import SprintKanban from "@/03_organisms/SprintKanban";
-import { MainPanel } from '@/04_templates/MainPanel';
+import { Main } from '@/04_templates/MainPanel';
 
 export default function Home() {
   return (
@@ -14,12 +14,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <MainPanel>
+      <Main>
         <PGoalKanban />
         <SGoalKanban />
         <ProductKanban />
         <SprintKanban />
-      </MainPanel>
+      </Main>
     </>
   )
 }

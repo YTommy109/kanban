@@ -1,5 +1,17 @@
 import { FC } from "react";
+import { styled } from 'goober'
 import { KanbanLane } from "@/02_molecules/KanbanLane";
+
+const Details = styled('details')`
+  summary {
+    font-size:              1.5rem;
+    line-height:            2rem;
+  }
+  .cols3 {
+    display:                grid;
+    grid-template-columns:  repeat(3, 1fr);
+  }
+`
 
 type Props = {
   data: BacklogItem[];
@@ -11,8 +23,8 @@ export const KanbanBody: FC<Props> = (
   { data, banner, setFocusId },
 ) => {
   return (
-    <details open>
-      <summary className="banner">{banner}</summary>
+    <Details open>
+      <summary>{banner}</summary>
       <div className="cols3">
         <KanbanLane
           title="ToDo"
@@ -36,17 +48,6 @@ export const KanbanBody: FC<Props> = (
           setFocusId={setFocusId}
         />
       </div>
-      <style jsx>{`
-        .banner {
-          font-size: 1.5rem;
-          line-height: 2rem;
-        }
-        .cols3 {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-        }
-      `}
-      </style>
-    </details>
+    </Details>
   );
 };

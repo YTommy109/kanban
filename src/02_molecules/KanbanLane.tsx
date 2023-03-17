@@ -1,5 +1,16 @@
 import { FC } from "react";
 import { KanbanItem } from "@/01_atoms/KanbanItem";
+import { styled } from 'goober'
+
+const Section = styled('section')`
+  border: solid 1px rgb(209 213 219);
+
+  h2 {
+    padding:          0.5rem;
+    background-color: rgb(99 102 241);
+    color:            rgb(255 255 255);
+  }
+`
 
 type Props = {
   title: string;
@@ -9,7 +20,7 @@ type Props = {
 
 export const KanbanLane: FC<Props> = ({ title, data, setFocusId }) =>
   <>
-    <section className="lane">
+    <Section>
       <h2>{title}</h2>
       <ul>
         {data.map((item) => (
@@ -20,17 +31,5 @@ export const KanbanLane: FC<Props> = ({ title, data, setFocusId }) =>
           />
         ))}
       </ul>
-    </section>
-    <style jsx>{`
-      .lane {
-        border-width: 1px;
-        border-color: rgb(209 213 219);
-        h2 {
-          background-color: rgb(99 102 241);
-          color: rgb(255 255 255);
-          padding: 0.25rem;
-        }
-      }
-    `}
-    </style>
+    </Section>
   </>

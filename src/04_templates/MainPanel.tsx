@@ -1,17 +1,6 @@
 import { FC, ReactNode } from "react";
+import { styled } from 'goober'
 
-type Props = {
-	children: ReactNode;
-};
-
-export const MainPanel: FC<Props> = ({ children }) =>
-  <>
-    <main className="main01">
-      {children}
-    </main>
-    <style jsx>{`
-      .main01 {
-        margin: 32px;
-      }
-  `}</style>
-  </>
+export const Main = styled('main')`
+  margin: 2rem;
+`

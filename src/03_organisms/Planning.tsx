@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Lane4 } from '@/04_templates/Lane'
 import pgoal from "@/_data/productgoal.json";
 import sgoal from "@/_data/sprintgoal.json";
 import pbl from '@/_data/pbl.json';
@@ -21,7 +22,7 @@ export const Planning = () => {
   return (
     <div>
       <h1>Planning</h1>
-      <div className="col4">
+      <Lane4>
         <div>
           <h2>Product Goal</h2>
           <ul>
@@ -54,13 +55,7 @@ export const Planning = () => {
             ))}
           </ul>
         </div>
-      </div>
-      <style jsx>{`
-        .col4 {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-        }
-      `}</style>
+      </Lane4>
     </div>
   );
 }

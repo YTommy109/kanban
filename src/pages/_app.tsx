@@ -2,6 +2,7 @@ import { createElement } from 'react'
 import { setup } from 'goober'
 import { prefix } from 'goober/prefixer'
 import type { AppProps } from 'next/app'
+import 'reset-css'
 
 // goober's needs to know how to render the `styled` nodes.
 // So to let it know, we run the `setup` function with the

@@ -1,4 +1,11 @@
 import { FC } from "react";
+import { styled } from 'goober'
+
+const Li = styled('li')`
+  color:          black;
+  padding:          0.5rem;
+  background-color: lightgoldenrodyellow;
+`
 
 type Props = {
   article: BacklogItem;
@@ -6,15 +13,4 @@ type Props = {
 };
 
 export const KanbanItem: FC<Props> = ({ article, handleClick }) =>
-  <>
-    <li key={article.id} className="item" onClick={handleClick}>{article.title}</li>
-    <style jsx>{`
-      .item {
-        border-width: 1px;
-        border-color: rgb(59 130 246);
-        color: black;
-        padding: 0.25rem;
-        background-color: rgb(254 249 195);
-      }
-    `}</style>
-  </>
+  <Li key={article.id} className="item" onClick={handleClick}>{article.title}</Li>
