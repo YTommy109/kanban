@@ -12,7 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Main>
-        <h1>Planning</h1>
+        <h1>Kanban</h1>
         <Kanban />
       </Main>
     </>

@@ -1,9 +1,10 @@
+type ItemState = 'ToDo' | 'Doing' | 'Done'
 
 interface BacklogItem {
   id: string;
   title: string;
   dod: string[];
-  state: itemState;
+  state: ItemState;
   order: number;
   created_at: string;
   parentId: string;
