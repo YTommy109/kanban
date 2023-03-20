@@ -7,7 +7,7 @@ interface BacklogItem {
   state: ItemState;
   order: number;
   created_at: string;
-  parentId: string;
+  parentId?: string;
 };
 
 declare module '@/_data/*.json' {

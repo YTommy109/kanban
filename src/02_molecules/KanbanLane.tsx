@@ -26,7 +26,7 @@ export const KanbanLane: FC<Props> = ({ title, data, setFocusId }) =>
         {data.map((item) => (
           <KanbanItem
             key         = {item.id}
-            article     = {item}
+            item     = {item}
             handleClick = {() => setFocusId ? setFocusId(item.id) : null}
           />
         ))}

@@ -8,9 +8,9 @@ const Li = styled('li')`
 `
 
 type Props = {
-  article:BacklogItem;
+  item:BacklogItem;
   handleClick?:() => void;
 };
 
-export const KanbanItem: FC<Props> = ({ article, handleClick }) =>
-  <Li key={article.id} className="item" onClick={handleClick}>{article.title}</Li>
+export const KanbanItem: FC<Props> = ({ item, handleClick }) =>
+  <Li key={item.id} className="item" onClick={handleClick}>{item.title}</Li>

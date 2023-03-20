@@ -12,10 +12,10 @@ const customJestConfig = {
   // setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   moduleNameMapper: {
     // aliasを定義 （tsconfig.jsonのcompilerOptions>pathsの定義に合わせる）
-    "^@/components/(.*)$": "<rootDir>/components/$1",
-    "^@/pages/(.*)$": "<rootDir>/pages/$1",
+    "^@/(.*)$": "<rootDir>/src/$1"
   },
   testEnvironment: "jest-environment-jsdom",
+  setupFilesAfterEnv: ['./src/jest.setup.js']
 };
 
 // createJestConfigを定義することによって、本ファイルで定義された設定がNext.jsの設定に反映されます
