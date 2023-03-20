@@ -10,8 +10,22 @@ interface BacklogItem {
   parentId?: string;
 };
 
-declare module '@/_data/*.json' {
+declare module '@/_data/productgoal.json' {
   const data: BacklogItem[];
+  export = data;
+}
 
-  export default data;
+declare module '@/_data/sprintgoal.json' {
+  const data: BacklogItem[];
+  export = data;
+}
+
+declare module '@/_data/pbl.json' {
+  const data: BacklogItem[];
+  export = data;
+}
+
+declare module '@/_data/sbl.json' {
+  const data: BacklogItem[];
+  export = data;
 }
