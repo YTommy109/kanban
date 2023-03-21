@@ -12,13 +12,11 @@ export const Planning = () => {
   const [fpbl, setFpbl] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log('pass01')
     setFsgl(null);
     setFpbl(null);
   }, [fpgl]);
 
   useEffect(() => {
-    console.log('pass02')
     setFpbl(null);
   }, [fsgl]);
 

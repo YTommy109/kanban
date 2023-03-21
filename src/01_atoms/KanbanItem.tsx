@@ -12,5 +12,5 @@ type Props = {
   handleClick?:() => void;
 };
 
-export const KanbanItem: FC<Props> = ({ item, handleClick }) =>
+export const KanbanItem: FC<Props> = ({item, handleClick}) =>
   <Li key={item.id} className="item" onClick={handleClick}>{item.title}</Li>
