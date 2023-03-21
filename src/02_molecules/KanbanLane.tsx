@@ -1,9 +1,8 @@
-import { FC } from "react";
-import { KanbanItem } from "@/01_atoms/KanbanItem";
 import { styled } from 'goober'
+import { KanbanItem } from '@/01_atoms/KanbanItem'
 
 const Section = styled('section')`
-  border: solid 1px rgb(209 213 219);
+  border:             solid 1px rgb(209 213 219);
 
   h2 {
     padding:          0.5rem;
@@ -12,9 +11,9 @@ const Section = styled('section')`
   }
 
   ul {
-    padding: 0.25rem;
-    display: grid;
-    grid-row-gap: 0.25rem;
+    padding:          0.25rem;
+    display:          grid;
+    grid-row-gap:     0.25rem;
   }
 `
 
@@ -24,8 +23,8 @@ type Props = {
   setFocusId?:(v: string) => void;
 };
 
-export const KanbanLane: FC<Props> = ({ title, data, setFocusId }) =>
-  <>
+export function KanbanLane({ title, data, setFocusId }:Props) {
+  return <>
     <Section>
       <h2>{title}</h2>
       <ul>
@@ -39,3 +38,4 @@ export const KanbanLane: FC<Props> = ({ title, data, setFocusId }) =>
       </ul>
     </Section>
   </>
+}

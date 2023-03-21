@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState } from 'react'
 import Head from 'next/head'
-import { Kanban } from "@/03_organisms/Kanban";
-import { Planning } from "@/03_organisms/Planning";
-import { Main } from '@/04_templates/MainPanel';
+import { Main } from '@/04_templates/MainPanel'
+import { Kanban } from '@/03_organisms/Kanban'
+import { Planning } from '@/03_organisms/Planning'
 import { Switcher } from '@/02_molecules/Switcher'
 
-const menuItems = ['Planning', "Kanban", "UserStory"]
+const menuItems = ['Planning', 'Kanban', 'UserStory']
 
 export default function Home() {
   const [active, setActive] = useState(0)

@@ -1,4 +1,4 @@
-import React from 'react';
-import { setup } from 'goober';
+import React from 'react'
+import { setup } from 'goober'
 
-setup(React.createElement);
+setup(React.createElement)

@@ -1,24 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react'
 import { Lane4 } from '@/04_templates/Lane'
 import { KanbanLane } from '@/02_molecules/KanbanLane'
-import pgoal from "@/_data/productgoal.json";
-import sgoal from "@/_data/sprintgoal.json";
-import pbl from '@/_data/pbl.json';
-import sbl from "@/_data/sbl.json";
+import pgoal from '@/_data/productgoal.json'
+import sgoal from '@/_data/sprintgoal.json'
+import pbl from '@/_data/pbl.json'
+import sbl from '@/_data/sbl.json'
 
-export const Planning = () => {
-  const [fpgl, setFpgl] = useState<string | null>(null);
-  const [fsgl, setFsgl] = useState<string | null>(null);
-  const [fpbl, setFpbl] = useState<string | null>(null);
-
-  useEffect(() => {
-    setFsgl(null);
-    setFpbl(null);
-  }, [fpgl]);
+export function Planning() {
+  const [fpgl, setFpgl] = useState<string | null>(null)
+  const [fsgl, setFsgl] = useState<string | null>(null)
+  const [fpbl, setFpbl] = useState<string | null>(null)
 
   useEffect(() => {
-    setFpbl(null);
-  }, [fsgl]);
+    setFsgl(null)
+    setFpbl(null)
+  }, [fpgl])
+
+  useEffect(() => {
+    setFpbl(null)
+  }, [fsgl])
 
   return <Lane4>
     <KanbanLane

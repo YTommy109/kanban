@@ -11,21 +11,21 @@ interface BacklogItem {
 };
 
 declare module '@/_data/productgoal.json' {
-  const data: BacklogItem[];
+  const data: BacklogItem[]
   export = data;
 }
 
 declare module '@/_data/sprintgoal.json' {
-  const data: BacklogItem[];
+  const data: BacklogItem[]
   export = data;
 }
 
 declare module '@/_data/pbl.json' {
-  const data: BacklogItem[];
+  const data: BacklogItem[]
   export = data;
 }
 
 declare module '@/_data/sbl.json' {
-  const data: BacklogItem[];
+  const data: BacklogItem[]
   export = data;
 }
