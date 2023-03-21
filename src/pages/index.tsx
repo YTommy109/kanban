@@ -3,12 +3,12 @@ import Head from 'next/head'
 import { Kanban } from "@/03_organisms/Kanban";
 import { Planning } from "@/03_organisms/Planning";
 import { Main } from '@/04_templates/MainPanel';
-import {useSwitcher} from '@/02_molecules/useSwitcher'
+import { Switcher } from '@/02_molecules/Switcher'
 
-const menuItems = ['Planning', "Kanban"]
+const menuItems = ['Planning', "Kanban", "UserStory"]
 
 export default function Home() {
-  const [active, render] = useSwitcher(menuItems)
+  const [active, setActive] = useState(0)
 
   return <>
     <Head>
@@ -18,9 +18,10 @@ export default function Home() {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Main>
-      {render}
+      <Switcher items={menuItems} active={active} setActive={setActive} />
       {active === 0 && <Planning />}
       {active === 1 && <Kanban />}
+      {active === 2 && <h1>ユーザーストーリーマップ</h1>}
     </Main>
   </>
 }

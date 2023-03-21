@@ -1,10 +1,10 @@
-import { useState } from "react";
 import { styled } from 'goober'
 
 const Ul = styled('ul')`
   width:                  15rem;
   display:                grid;
-  grid-template-columns:  repeat(3, 1fr);
+  grid-template-columns:  repeat(5, 1fr);
+
   li {
     width:                5rem;
     text-align:           center;
@@ -27,22 +27,24 @@ const Ul = styled('ul')`
   }
 `
 
-export function useSwitcher(items:string[]) {
-  const [active, setActive] = useState<number>(0)
+type Props = {
+  items:string[];
+  active:number;
+  setActive:(v:number)=>void
+}
 
-  return [active,
-    <>
-      <Ul>
-        {items.map((it, idx) =>
-          <li
-            key       = {idx}
-            className = {idx===active ? 'active' : ''}
-            onClick   = {() => setActive(idx)}
-            >
-            {it}
-          </li>
-        )}
-      </Ul>
-    </>
-  ]
+export function Switcher({items, active, setActive}:Props) {
+  return <>
+    <Ul>
+      {items.map((it, idx) =>
+        <li
+          key       = {idx}
+          className = {idx===active ? 'active' : ''}
+          onClick   = {() => setActive(idx)}
+        >
+          {it}
+        </li>
+      )}
+    </Ul>
+  </>
 }

@@ -10,6 +10,12 @@ const Section = styled('section')`
     background-color: rgb(99 102 241);
     color:            rgb(255 255 255);
   }
+
+  ul {
+    padding: 0.25rem;
+    display: grid;
+    grid-row-gap: 0.25rem;
+  }
 `
 
 type Props = {
@@ -26,7 +32,7 @@ export const KanbanLane: FC<Props> = ({ title, data, setFocusId }) =>
         {data.map((item) => (
           <KanbanItem
             key         = {item.id}
-            item     = {item}
+            item        = {item}
             handleClick = {() => setFocusId ? setFocusId(item.id) : null}
           />
         ))}
