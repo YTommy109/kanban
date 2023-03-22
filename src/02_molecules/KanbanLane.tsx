@@ -1,5 +1,5 @@
 import { styled } from 'goober'
-import { KanbanItem } from '@/01_atoms/KanbanItem'
+import { KanbanItem2 } from '@/01_atoms/KanbanItem'
 
 const Section = styled('section')`
   border:             solid 1px rgb(209 213 219);
@@ -18,21 +18,23 @@ const Section = styled('section')`
 `
 
 type Props = {
-  title:string;
-  data:BacklogItem[];
-  setFocusId?:(v: string) => void;
+  title: string;
+  data: BacklogItem[];
+  setFocusId?: (v: string) => void;
+  changeState?: (v: string) => void;
 };
 
-export function KanbanLane({ title, data, setFocusId }:Props) {
+export function KanbanLane({ title, data, setFocusId, changeState }: Props) {
   return <>
     <Section>
       <h2>{title}</h2>
       <ul>
         {data.map((item) => (
-          <KanbanItem
-            key         = {item.id}
-            item        = {item}
-            handleClick = {() => setFocusId ? setFocusId(item.id) : null}
+          <KanbanItem2
+            key={item.id}
+            item={item}
+            setFocusId={setFocusId}
+            changeState={changeState}
           />
         ))}
       </ul>

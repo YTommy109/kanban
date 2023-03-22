@@ -28,23 +28,21 @@ const Ul = styled('ul')`
 `
 
 type Props = {
-  items:string[];
-  active:number;
-  setActive:(v:number)=>void
+  items: string[];                // メニューリスト
+  active: number;                 // 現在選択されてる番号
+  setActive: (v: number) => void  // 選択を変更するセッター
 }
 
-export function Switcher({items, active, setActive}:Props) {
-  return <>
-    <Ul>
-      {items.map((it, idx) =>
-        <li
-          key       = {idx}
-          className = {idx===active ? 'active' : ''}
-          onClick   = {() => setActive(idx)}
-        >
-          {it}
-        </li>
-      )}
-    </Ul>
-  </>
+export function Switcher({ items, active, setActive }: Props) {
+  return <Ul>
+    {items.map((it, idx) =>
+      <li
+        key={idx}
+        className={idx === active ? 'active' : ''}
+        onClick={() => setActive(idx)}
+      >
+        {it}
+      </li>
+    )}
+  </Ul>
 }

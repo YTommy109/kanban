@@ -8,9 +8,21 @@ const Li = styled('li')`
 `
 
 type Props = {
-  item:BacklogItem;
-  handleClick?:() => void;
+  item: BacklogItem;
+  handleClick?: () => void;
 };
 
-export const KanbanItem: FC<Props> = ({item, handleClick}) =>
+export const KanbanItem: FC<Props> = ({ item, handleClick }) =>
   <Li key={item.id} className="item" onClick={handleClick}>{item.title}</Li>
+
+type Props2 = {
+  item: BacklogItem;
+  setFocusId?: (id: string) => void;
+  changeState?: (id: string) => void;
+};
+
+export const KanbanItem2: FC<Props2> = ({ item, setFocusId, changeState }) =>
+  <Li key={item.id} className="item">
+    <span onClick={() => setFocusId ? setFocusId(item.id) : null}>{item.title}</span>
+    <span onClick={() => changeState ? changeState(item.id) : null}>Doing</span>
+  </Li>
