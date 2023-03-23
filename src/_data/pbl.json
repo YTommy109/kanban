@@ -1,6 +1,7 @@
 [
     {
         "id": "dd22d480-711d-4bf7-ad9b-77a083830ea7",
+        "itemType": "PBI",
         "title": "Sprint Backlog が見たい",
         "dod": [
             "ToDo が見えること",
@@ -15,6 +16,7 @@
     },
     {
         "id": "52455660-6e0a-4209-ba4a-ae72d14aba7a",
+        "itemType": "PBI",
         "title": "Product Backlog が見たい",
         "dod": [
             "ToDo が見えること",
@@ -29,6 +31,7 @@
     },
     {
         "id": "db213c71-035c-46bf-986c-e35c078ee330",
+        "itemType": "PBI",
         "title": "Sprint Goal が見たい",
         "dod": [
             "ToDo が見えること",
@@ -43,6 +46,7 @@
     },
     {
         "id": "da2afb73-f665-47d0-8b4b-6ede9931ae0a",
+        "itemType": "PBI",
         "title": "Product Goal が見たい",
         "dod": [
             "ToDo が見えること",

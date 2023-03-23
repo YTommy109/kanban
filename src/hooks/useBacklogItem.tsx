@@ -2,48 +2,49 @@ import pgoal from '@/_data/productgoal.json'
 import sgoal from '@/_data/sprintgoal.json'
 import pbl from '@/_data/pbl.json'
 import sbl from '@/_data/sbl.json'
-import { atom, selector, useSetRecoilState } from 'recoil'
+import { atom, selector, useSetRecoilState, useRecoilValue } from 'recoil'
 
-export const gsProductGoal = atom({
-  key: 'pgoal',
-  default: pgoal
+const backlogItems = atom<BacklogItem[]>({
+  key: 'backlogItems',
+  default: pgoal.concat(sgoal, pbl, sbl)
 })
 
-export const gsSprintGoal = atom({
-  key: 'sgoal',
-  default: sgoal
+const productGoals = selector({
+  key: 'productGoals',
+  get: ({ get }) => get(backlogItems).filter((it) => it.itemType === 'PGI')
 })
 
-export const gsProductBacklog = atom({
-  key: 'pbl',
-  default: pbl
+const sprintGoals = selector({
+  key: 'sprintGoals',
+  get: ({ get }) => get(backlogItems).filter((it) => it.itemType === 'SGI')
 })
 
-export const gsSprintBacklog = atom({
-  key: 'sbl',
-  default: sbl
+const productBacklogItems = selector({
+  key: 'productBacklogItems',
+  get: ({ get }) => get(backlogItems).filter((it) => it.itemType === 'PBI')
 })
 
-export const selectToDoOfSBL = selector({
-  key: 'selectToDoOfSBL',
-  get: ({ get }) => get(gsSprintBacklog).filter((it) => it.state === 'ToDo')
+const sprintBacklogItems = selector({
+  key: 'sprintBacklogItems',
+  get: ({ get }) => get(backlogItems).filter((it) => it.itemType === 'SBI')
 })
 
-export const selectDoingOfSBL = selector({
-  key: 'selectDoingOfSBL',
-  get: ({ get }) => get(gsSprintBacklog).filter((it) => it.state === 'Doing')
-})
+const NEXT_STATE:Record<ItemState, ItemState> = {
+  'ToDo': 'Doing',
+  'Doing': 'Done',
+  'Done': 'Done'
+}
 
-export const selectDoneOfSBL = selector({
-  key: 'selectDoneOfSBL',
-  get: ({ get }) => get(gsSprintBacklog).filter((it) => it.state === 'Done')
-})
+export const useBacklogItems = () => {
+  const pgs = useRecoilValue(productGoals)
+  const sbs = useRecoilValue(sprintGoals)
+  const pbl = useRecoilValue(productBacklogItems)
+  const sbl = useRecoilValue(sprintBacklogItems)
 
-export const useUpdateOfSBI = () => {
-  const setItems = useSetRecoilState(gsSprintBacklog)
+  const setBacklogItems = useSetRecoilState(backlogItems)
 
-  const changeState = (id: string, state: ItemState) =>
-    setItems((cur) => cur.map(it => it.id === id ? { ...it, state: state } : it))
+  const changeNextState = (id: string) =>
+    setBacklogItems((cur) => cur.map(it => it.id === id ? { ...it, state: NEXT_STATE[it.state] } : it))
 
-  return { changeState }
+  return {pgs, sbs, pbl, sbl, changeNextState}
 }
