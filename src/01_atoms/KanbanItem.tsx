@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { styled } from 'goober'
+import { useUpdateOfSBI } from '@/hooks/useBacklogItem'
 
 const Li = styled('li')`
   color:          black;
@@ -18,11 +19,13 @@ export const KanbanItem: FC<Props> = ({ item, handleClick }) =>
 type Props2 = {
   item: BacklogItem;
   setFocusId?: (id: string) => void;
-  changeState?: (id: string) => void;
 };
 
-export const KanbanItem2: FC<Props2> = ({ item, setFocusId, changeState }) =>
-  <Li key={item.id} className="item">
+export const KanbanItem2: FC<Props2> = ({ item, setFocusId }) => {
+  const { changeState } = useUpdateOfSBI()
+
+  return <Li key={item.id} className="item">
     <span onClick={() => setFocusId ? setFocusId(item.id) : null}>{item.title}</span>
-    <span onClick={() => changeState ? changeState(item.id) : null}>Doing</span>
+    <span onClick={() => changeState(item.id, 'Doing')}>Doing</span>
   </Li>
+}

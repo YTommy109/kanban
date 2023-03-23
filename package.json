@@ -15,6 +15,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "recoil": "^0.7.7",
+    "recoil-devtools-logger": "^0.5.0",
     "reset-css": "^5.0.1"
   },
   "devDependencies": {

@@ -42,9 +42,8 @@ export const selectDoneOfSBL = selector({
 export const useUpdateOfSBI = () => {
   const setItems = useSetRecoilState(gsSprintBacklog)
 
-  const changeState = (id:string, state:ItemState) => {
-    setItems((cur) => cur.map(it => it.id===id ? {...it, state: state} : it))
-  }
+  const changeState = (id: string, state: ItemState) =>
+    setItems((cur) => cur.map(it => it.id === id ? { ...it, state: state } : it))
 
-  return {changeState}
+  return { changeState }
 }

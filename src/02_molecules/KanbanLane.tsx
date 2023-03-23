@@ -21,10 +21,9 @@ type Props = {
   title: string;
   data: BacklogItem[];
   setFocusId?: (v: string) => void;
-  changeState?: (v: string) => void;
 };
 
-export function KanbanLane({ title, data, setFocusId, changeState }: Props) {
+export function KanbanLane({ title, data, setFocusId }: Props) {
   return <>
     <Section>
       <h2>{title}</h2>
@@ -34,7 +33,6 @@ export function KanbanLane({ title, data, setFocusId, changeState }: Props) {
             key={item.id}
             item={item}
             setFocusId={setFocusId}
-            changeState={changeState}
           />
         ))}
       </ul>

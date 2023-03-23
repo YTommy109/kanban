@@ -12,10 +12,9 @@ export default function SprintKanban() {
 
   return <Lane2_200>
     <KanbanBody
-      data={items}
+      data={sbl}
       banner="Sprint Backlog"
       setFocusId={setFocusId}
-      changeState={changeState}
     />
     {focusItem && <ItemDetail item={focusItem} />}
   </Lane2_200>

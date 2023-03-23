@@ -13,10 +13,9 @@ type Props = {
   data: BacklogItem[];
   banner: string;
   setFocusId: (v: string) => void;
-  changeState?: (id: string) => void;
 };
 
-export function KanbanBody({ data, banner, setFocusId, changeState }: Props) {
+export function KanbanBody({ data, banner, setFocusId }: Props) {
   return <Details open>
     <summary>{banner}</summary>
     <Lane3>
@@ -40,7 +39,6 @@ export function KanbanBody({ data, banner, setFocusId, changeState }: Props) {
           it1.order - it2.order
         )}
         setFocusId={setFocusId}
-        changeState={changeState}
       />
     </Lane3>
   </Details>
