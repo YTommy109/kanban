@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
+import { useRecoilState } from 'recoil'
 import { Lane4 } from '@/04_templates/Lane'
 import { KanbanLane } from '@/02_molecules/KanbanLane'
-import pgoal from '@/_data/productgoal.json'
-import sgoal from '@/_data/sprintgoal.json'
-import pbl from '@/_data/pbl.json'
-import sbl from '@/_data/sbl.json'
+import { gsProductGoal, gsSprintGoal, gsProductBacklog, gsSprintBacklog } from '@/hooks/useBacklogItem'
 
 export function Planning() {
+  const [pgoal] = useRecoilState(gsProductGoal)
+  const [sgoal] = useRecoilState(gsSprintGoal)
+  const [pbl] = useRecoilState(gsProductBacklog)
+  const [sbl] = useRecoilState(gsSprintBacklog)
   const [fpgl, setFpgl] = useState<string | null>(null)
   const [fsgl, setFsgl] = useState<string | null>(null)
   const [fpbl, setFpbl] = useState<string | null>(null)
