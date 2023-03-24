@@ -29,7 +29,7 @@ const sprintBacklogItems = selector({
   get: ({ get }) => get(backlogItems).filter((it) => it.itemType === 'SBI')
 })
 
-const NEXT_STATE:Record<ItemState, ItemState> = {
+const NEXT_STATE: Record<ItemState, ItemState> = {
   'ToDo': 'Doing',
   'Doing': 'Done',
   'Done': 'Done'
@@ -46,5 +46,19 @@ export const useBacklogItems = () => {
   const changeNextState = (id: string) =>
     setBacklogItems((cur) => cur.map(it => it.id === id ? { ...it, state: NEXT_STATE[it.state] } : it))
 
-  return {pgs, sgs, pbl, sbl, changeNextState}
+  const newItem: BacklogItem = {
+    'id': '',
+    'itemType': 'PBI',
+    'title': '名称未設定',
+    'dod': [],
+    'state': 'ToDo',
+    'order': 1,
+    'created_at': '2022-06-17T00:00:00.000Z',
+    'parentId': ''
+  }
+
+  const addBacklogItem = (itemType: ItemType) =>
+    setBacklogItems((cur) => [...cur, { ...newItem, itemType: itemType }])
+
+  return { pgs, sgs, pbl, sbl, changeNextState, addBacklogItem }
 }
