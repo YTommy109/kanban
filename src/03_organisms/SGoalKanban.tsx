@@ -5,7 +5,7 @@ import { ItemDetail } from '@/02_molecules/ItemDetail'
 import { useBacklogItems } from '@/hooks/useBacklogItem'
 
 export default function SGoalKanban() {
-  const {sbs} = useBacklogItems()
+  const {sgs: sbs} = useBacklogItems()
   const [focusId, setFocusId] = useState<string|null>(null)
   const focusItem = useMemo(() => sbs.find((it) => it.id === focusId), [focusId, sbs])
 

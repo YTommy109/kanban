@@ -37,7 +37,7 @@ const NEXT_STATE:Record<ItemState, ItemState> = {
 
 export const useBacklogItems = () => {
   const pgs = useRecoilValue(productGoals)
-  const sbs = useRecoilValue(sprintGoals)
+  const sgs = useRecoilValue(sprintGoals)
   const pbl = useRecoilValue(productBacklogItems)
   const sbl = useRecoilValue(sprintBacklogItems)
 
@@ -46,5 +46,5 @@ export const useBacklogItems = () => {
   const changeNextState = (id: string) =>
     setBacklogItems((cur) => cur.map(it => it.id === id ? { ...it, state: NEXT_STATE[it.state] } : it))
 
-  return {pgs, sbs, pbl, sbl, changeNextState}
+  return {pgs, sgs, pbl, sbl, changeNextState}
 }

@@ -4,7 +4,7 @@ import { KanbanLane } from '@/02_molecules/KanbanLane'
 import { useBacklogItems } from '@/hooks/useBacklogItem'
 
 export function Planning() {
-  const {pgs, sbs, pbl, sbl} = useBacklogItems()
+  const {pgs, sgs: sbs, pbl, sbl} = useBacklogItems()
   const [fpgl, setFpgl] = useState<string | null>(null)
   const [fsgl, setFsgl] = useState<string | null>(null)
   const [fpbl, setFpbl] = useState<string | null>(null)
