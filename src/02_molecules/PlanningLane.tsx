@@ -8,7 +8,6 @@ import { useBacklogItems } from '@/hooks/useBacklogItem'
 //TODO: 入力フォーム
 
 const Ul = styled('ul')`
-    padding:          0.25rem;
     display:          grid;
     grid-row-gap:     0.25rem;
 `
@@ -33,9 +32,12 @@ export function PlanningLane({ title, data, setFocusId, itemType }: Props) {
           />
         ))}
       </Ul>
-      <button onClick={() => addBacklogItem(itemType)}>
-        <BiAddToQueue />
-      </button>
+      <BiAddToQueue
+        onClick={() => addBacklogItem(itemType)}
+        color="gray"
+        title='Add new ticket'
+        style={{'margin': '.25rem 0'}}
+        />
     </BacklogLane>
   </>
 }

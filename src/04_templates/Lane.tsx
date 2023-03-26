@@ -22,6 +22,9 @@ const Section = styled('section')`
     background-color: rgb(99 102 241);
     color:            rgb(255 255 255);
   }
+  div {
+    padding:          0.25rem;
+  }
 `
 
 type Props = {
@@ -33,7 +36,9 @@ export function BacklogLane({ title, children }: Props) {
   return <>
     <Section>
       <h2>{title}</h2>
-      {children}
+      <div>
+        {children}
+      </div>
     </Section>
   </>
 }

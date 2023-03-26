@@ -3,7 +3,6 @@ import { KanbanItem2 } from '@/01_atoms/KanbanItem'
 import { BacklogLane } from '@/04_templates/Lane'
 
 const Ul = styled('ul')`
-    padding:          0.25rem;
     display:          grid;
     grid-row-gap:     0.25rem;
 `

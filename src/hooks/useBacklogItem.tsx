@@ -46,7 +46,7 @@ export const useBacklogItems = () => {
   const changeNextState = (id: string) =>
     setBacklogItems((cur) => cur.map(it => it.id === id ? { ...it, state: NEXT_STATE[it.state] } : it))
 
-  const newItem: BacklogItem = {
+  const newItem:BacklogItem = {
     'id': '',
     'itemType': 'PBI',
     'title': '名称未設定',
