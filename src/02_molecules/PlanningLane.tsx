@@ -15,11 +15,10 @@ const Ul = styled('ul')`
 type Props = {
   title: string;
   data: BacklogItem[];
-  setFocusId?: (v: string) => void;
   itemType: ItemType;
 };
 
-export function PlanningLane({ title, data, setFocusId, itemType }: Props) {
+export function PlanningLane({ title, data, itemType }: Props) {
   const { addBacklogItem } = useBacklogItems()
   return <>
     <BacklogLane title={title}>
@@ -28,7 +27,6 @@ export function PlanningLane({ title, data, setFocusId, itemType }: Props) {
           <KanbanItem2
             key={item.id}
             item={item}
-            setFocusId={setFocusId}
           />
         ))}
       </Ul>
@@ -36,8 +34,8 @@ export function PlanningLane({ title, data, setFocusId, itemType }: Props) {
         onClick={() => addBacklogItem(itemType)}
         color="gray"
         title='Add new ticket'
-        style={{'margin': '.25rem 0'}}
-        />
+        style={{ 'margin': '.25rem 0' }}
+      />
     </BacklogLane>
   </>
 }

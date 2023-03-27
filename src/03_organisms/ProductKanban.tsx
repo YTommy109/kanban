@@ -5,15 +5,13 @@ import { ItemDetail } from '@/02_molecules/ItemDetail'
 import { useBacklogItems } from '@/hooks/useBacklogItem'
 
 export function ProductKanban() {
-  const {pbl} = useBacklogItems()
-  const [focusId, setFocusId] = useState<string | null>(null)
-  const focusItem = useMemo(() => pbl.find((it) => it.id === focusId), [focusId, pbl])
+  const { pbl, focusPBI } = useBacklogItems()
+  const focusItem = useMemo(() => pbl.find((it) => it.id === focusPBI), [focusPBI, pbl])
 
   return <Lane2_200>
     <KanbanBody
       data={pbl}
       banner="Product Backlog"
-      setFocusId={setFocusId}
     />
     {focusItem && <ItemDetail item={focusItem} />}
   </Lane2_200>

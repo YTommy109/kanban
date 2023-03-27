@@ -5,15 +5,13 @@ import { ItemDetail } from '@/02_molecules/ItemDetail'
 import { useBacklogItems } from '@/hooks/useBacklogItem'
 
 export default function SprintKanban() {
-  const {sbl} = useBacklogItems()
-  const [focusId, setFocusId] = useState<string | null>(null)
-  const focusItem = useMemo(() => sbl.find((it) => it.id === focusId), [focusId, sbl])
+  const { sbl, focusSBI } = useBacklogItems()
+  const focusItem = useMemo(() => sbl.find((it) => it.id === focusSBI), [focusSBI, sbl])
 
   return <Lane2_200>
     <KanbanBody
       data={sbl}
       banner="Sprint Backlog"
-      setFocusId={setFocusId}
     />
     {focusItem && <ItemDetail item={focusItem} />}
   </Lane2_200>

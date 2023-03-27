@@ -4,42 +4,36 @@ import { PlanningLane } from '@/02_molecules/PlanningLane'
 import { useBacklogItems } from '@/hooks/useBacklogItem'
 
 export function Planning() {
-  const { pgs, sgs, pbl, sbl } = useBacklogItems()
-  const [fpgl, setFpgl] = useState<string | null>(null)
-  const [fsgl, setFsgl] = useState<string | null>(null)
-  const [fpbl, setFpbl] = useState<string | null>(null)
+  const { pgs, sgs, pbl, sbl, focusPGI, focusSGI, focusPBI, setFocusSGI, setFocusPBI } = useBacklogItems()
 
   useEffect(() => {
-    setFsgl(null)
-    setFpbl(null)
-  }, [fpgl])
+    setFocusSGI(null)
+    setFocusPBI(null)
+  }, [focusPGI, setFocusSGI, setFocusPBI])
 
   useEffect(() => {
-    setFpbl(null)
-  }, [fsgl])
+    setFocusPBI(null)
+  }, [focusSGI, setFocusPBI])
 
   return <Lane4>
     <PlanningLane
       title="Product Goal"
       data={pgs}
-      setFocusId={setFpgl}
       itemType={'PGI'}
     />
     <PlanningLane
       title="Sprint Goal"
-      data={sgs.filter((it) => it.parentId === fpgl)}
-      setFocusId={setFsgl}
+      data={sgs.filter((it) => it.parentId === focusPGI)}
       itemType={'SGI'}
     />
     <PlanningLane
       title="Product Backlog"
-      data={pbl.filter((it) => it.parentId === fsgl)}
-      setFocusId={setFpbl}
+      data={pbl.filter((it) => it.parentId === focusSGI)}
       itemType={'PBI'}
     />
     <PlanningLane
       title="Sprint Backlog"
-      data={sbl.filter((it) => it.parentId === fpbl)}
+      data={sbl.filter((it) => it.parentId === focusPBI)}
       itemType={'SBI'}
     />
   </Lane4>

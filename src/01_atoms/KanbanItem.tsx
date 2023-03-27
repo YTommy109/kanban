@@ -3,9 +3,13 @@ import { styled } from 'goober'
 import { useBacklogItems } from '@/hooks/useBacklogItem'
 
 const Li = styled('li')`
-  color:          black;
+  color:            black;
   padding:          0.5rem;
   background-color: lightgoldenrodyellow;
+  border:           solid 2px lightgoldenrodyellow;
+  &.focus {
+    border:         solid 2px goldenrod;
+  }
 `
 
 type Props = {
@@ -24,14 +28,17 @@ const STATE_VALUE = {
 
 type Props2 = {
   item: BacklogItem;
-  setFocusId?: (id: string) => void;
 };
 
-export const KanbanItem2: FC<Props2> = ({ item, setFocusId }) => {
-  const { changeNextState } = useBacklogItems()
+export const KanbanItem2: FC<Props2> = ({ item }) => {
+  const { changeNextState, focusItem, setFocusItem } = useBacklogItems()
 
-  return <Li key={item.id} className="item">
-    <span onClick={() => setFocusId ? setFocusId(item.id) : null}>{item.title}</span>
+  return <Li key={item.id} className={focusItem[item.itemType] === item.id ? 'focus item' : 'item'}>
+    <span
+      onClick={() => setFocusItem((cur) => ({ ...cur, [item.itemType]: item.id }))}
+    >
+      {item.title
+      }</span>
     {STATE_VALUE[item.state] && <span onClick={() => changeNextState(item.id)}>{STATE_VALUE[item.state]}</span>}
   </Li>
 }

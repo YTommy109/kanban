@@ -10,10 +10,9 @@ const Ul = styled('ul')`
 type Props = {
   title: string;
   data: BacklogItem[];
-  setFocusId?: (v: string) => void;
 };
 
-export function KanbanLane({ title, data, setFocusId }: Props) {
+export function KanbanLane({ title, data }: Props) {
   return <>
     <BacklogLane title={title}>
       <Ul>
@@ -21,7 +20,6 @@ export function KanbanLane({ title, data, setFocusId }: Props) {
           <KanbanItem2
             key={item.id}
             item={item}
-            setFocusId={setFocusId}
           />
         ))}
       </Ul>
