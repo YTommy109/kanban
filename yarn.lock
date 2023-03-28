@@ -1500,6 +1500,11 @@ dedent@^0.7.0:
   resolved "https://registry.yarnpkg.com/dedent/-/dedent-0.7.0.tgz#2495ddbaf6eb874abb0e1be9df22d2e5a544326c"
   integrity sha512-Q6fKUPqnAHAyhiUgFU7BUzLiv0kd8saH9al7tnu5Q/okj6dnupxyTgFIBjVzJATdfIAm9NAsvXNzjaKa+bxVyA==
 
+deep-diff@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/deep-diff/-/deep-diff-1.0.2.tgz#afd3d1f749115be965e89c63edc7abb1506b9c26"
+  integrity sha512-aWS3UIVH+NPGCD1kki+DCU9Dua032iSsO43LqQpcs4R3+dVv7tX0qBGjiVHJHjplsoUM2XRO/KB92glqc68awg==
+
 deep-equal@^2.0.5:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-2.2.0.tgz#5caeace9c781028b9ff459f33b779346637c43e6"
@@ -2325,6 +2330,11 @@ has@^1.0.3:
   integrity sha512-f2dvO0VU6Oej7RkWJGrehjbzMAjFp5/VKPp5tTpWIV4JHHZK1/BxbFRtf/siA2SWTe09caDmVtYYzWEIbBS4zw==
   dependencies:
     function-bind "^1.1.1"
+
+hashids@^2.2.11:
+  version "2.2.11"
+  resolved "https://registry.yarnpkg.com/hashids/-/hashids-2.2.11.tgz#825d3197742f4326d01645f125e09c026eb76e8b"
+  integrity sha512-e1rAPT5Wa9vf/Dq1eq8LFw5VH2dtKxRf6k9bCw0GLwKL/SRnUphIcqwJWUZ1ki18cdj03nCrpdlJOcyHILQk8Q==
 
 html-encoding-sniffer@^3.0.0:
   version "3.0.0"
@@ -3683,6 +3693,11 @@ react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
+react-icons@^4.8.0:
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.8.0.tgz#621e900caa23b912f737e41be57f27f6b2bff445"
+  integrity sha512-N6+kOLcihDiAnj5Czu637waJqSnwlMNROzVZMhfX68V/9bu9qHaMIJC4UdozWoOk57gahFCNHwVvWzm0MTzRjg==
+
 react-is@^16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -3704,6 +3719,13 @@ react@^18.2.0:
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
   dependencies:
     loose-envify "^1.1.0"
+
+recoil-devtools-logger@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/recoil-devtools-logger/-/recoil-devtools-logger-0.5.0.tgz#35d58dfe8f8e2f1d1cfc5f0186d35851f84d2697"
+  integrity sha512-Bv8rriOQW/h34NofocHYIu1dShO8gPQaN1yVNkE51ZpOV2tYpt7ieJmoFDvTBeJkTMRy7tSDloZxT+jkWLmp5A==
+  dependencies:
+    deep-diff "^1.0.2"
 
 recoil@^0.7.7:
   version "0.7.7"

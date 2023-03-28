@@ -1,41 +1,28 @@
 import { styled } from 'goober'
-import { KanbanItem } from '@/01_atoms/KanbanItem'
+import { KanbanItem2 } from '@/01_atoms/KanbanItem'
+import { BacklogLane } from '@/04_templates/Lane'
 
-const Section = styled('section')`
-  border:             solid 1px rgb(209 213 219);
-
-  h2 {
-    padding:          0.5rem;
-    background-color: rgb(99 102 241);
-    color:            rgb(255 255 255);
-  }
-
-  ul {
-    padding:          0.25rem;
+const Ul = styled('ul')`
     display:          grid;
     grid-row-gap:     0.25rem;
-  }
 `
 
 type Props = {
-  title:string;
-  data:BacklogItem[];
-  setFocusId?:(v: string) => void;
+  title: string;
+  data: BacklogItem[];
 };
 
-export function KanbanLane({ title, data, setFocusId }:Props) {
+export function KanbanLane({ title, data }: Props) {
   return <>
-    <Section>
-      <h2>{title}</h2>
-      <ul>
+    <BacklogLane title={title}>
+      <Ul>
         {data.map((item) => (
-          <KanbanItem
-            key         = {item.id}
-            item        = {item}
-            handleClick = {() => setFocusId ? setFocusId(item.id) : null}
+          <KanbanItem2
+            key={item.id}
+            item={item}
           />
         ))}
-      </ul>
-    </Section>
+      </Ul>
+    </BacklogLane>
   </>
 }

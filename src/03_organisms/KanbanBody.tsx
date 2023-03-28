@@ -10,12 +10,11 @@ const Details = styled('details')`
 `
 
 type Props = {
-  data:BacklogItem[];
-  banner:string;
-  setFocusId:(v:string)=>void;
+  data: BacklogItem[];
+  banner: string;
 };
 
-export function KanbanBody ({data, banner, setFocusId}:Props) {
+export function KanbanBody({ data, banner }: Props) {
   return <Details open>
     <summary>{banner}</summary>
     <Lane3>
@@ -24,21 +23,18 @@ export function KanbanBody ({data, banner, setFocusId}:Props) {
         data={data.filter((it) => it.state === 'ToDo').sort((it1, it2) =>
           it1.order - it2.order
         )}
-        setFocusId={setFocusId}
       />
       <KanbanLane
         title="Doing"
         data={data.filter((it) => it.state === 'Doing').sort((it1, it2) =>
           it1.order - it2.order
         )}
-        setFocusId={setFocusId}
       />
       <KanbanLane
         title="Done"
         data={data.filter((it) => it.state === 'Done').sort((it1, it2) =>
           it1.order - it2.order
         )}
-        setFocusId={setFocusId}
       />
     </Lane3>
   </Details>

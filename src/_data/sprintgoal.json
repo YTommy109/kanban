@@ -1,6 +1,7 @@
 [
     {
         "id": "6af53d3e-c380-4c0a-82ad-0653e3be66ca",
+        "itemType": "SGI",
         "title": "Product Goal から SBI まで見たい",
         "dod": [
             "Sprint Backlog が見えること",
@@ -15,6 +16,7 @@
     },
     {
         "id": "e7530f39-5dd8-4258-90d2-65a7687abfad",
+        "itemType": "SGI",
         "title": "ToDo, Doing, Done の状態を変えたい",
         "dod": [],
         "state": "ToDo",
@@ -24,6 +26,7 @@
     },
     {
         "id": "97916ff1-1612-436b-9628-1ae85a507210",
+        "itemType": "SGI",
         "title": "各種、適した見積もりをしたい",
         "dod": [
             "Product Goal Item の見積もりができること",
@@ -38,6 +41,7 @@
     },
     {
         "id": "a53aed4c-97ed-47b4-b2af-2df0292753ec",
+        "itemType": "SGI",
         "title": "実績をグラフでトレースしたい",
         "dod": [
             "Product バーンアップチャートが見れること",
@@ -50,6 +54,7 @@
     },
     {
         "id": "ca36000a-43fa-4284-acbb-741acd10f8ae",
+        "itemType": "SGI",
         "title": "データを永続化し、自分で登録したい",
         "dod": [],
         "state": "ToDo",

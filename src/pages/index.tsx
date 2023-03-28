@@ -5,7 +5,7 @@ import { Kanban } from '@/03_organisms/Kanban'
 import { Planning } from '@/03_organisms/Planning'
 import { Switcher } from '@/02_molecules/Switcher'
 
-const menuItems = ['Planning', 'Kanban', 'UserStory']
+const menuItems = ['Planning', 'Kanban', 'UserStory'] // メニューリスト
 
 export default function Home() {
   const [active, setActive] = useState(0)
@@ -18,7 +18,11 @@ export default function Home() {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Main>
-      <Switcher items={menuItems} active={active} setActive={setActive} />
+      <Switcher
+        items={menuItems}       // メニューリスト
+        active={active}         // 選択番号
+        setActive={setActive}   // 選択番号変更セッター
+      />
       {active === 0 && <Planning />}
       {active === 1 && <Kanban />}
       {active === 2 && <h1>ユーザーストーリーマップ</h1>}

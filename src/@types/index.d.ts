@@ -1,13 +1,15 @@
-type ItemState = 'ToDo' | 'Doing' | 'Done'
+type ItemState = 'ToDo'|'Doing'|'Done'
+type ItemType = 'PGI'|'SGI'|'PBI'|'SBI'
 
 interface BacklogItem {
   id: string;
-  title: string;
-  dod: string[];
-  state: ItemState;
-  order: number;
-  created_at: string;
-  parentId?: string;
+  itemType:ItemType;      // アイテムの種類
+  title: string;          // タイトル
+  dod: string[];          // 完了条件
+  state: ItemState;       // 状態
+  order: number;          // 作業着手順序
+  created_at: string;     // 作成日
+  parentId?: string;      // 親
 };
 
 declare module '@/_data/productgoal.json' {

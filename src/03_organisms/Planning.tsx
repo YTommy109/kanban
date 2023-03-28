@@ -1,46 +1,40 @@
 import { useState, useEffect } from 'react'
-import { useRecoilState } from 'recoil'
 import { Lane4 } from '@/04_templates/Lane'
-import { KanbanLane } from '@/02_molecules/KanbanLane'
-import { gsProductGoal, gsSprintGoal, gsProductBacklog, gsSprintBacklog } from '@/hooks/useBacklogItem'
+import { PlanningLane } from '@/02_molecules/PlanningLane'
+import { useBacklogItems } from '@/hooks/useBacklogItem'
 
 export function Planning() {
-  const [pgoal] = useRecoilState(gsProductGoal)
-  const [sgoal] = useRecoilState(gsSprintGoal)
-  const [pbl] = useRecoilState(gsProductBacklog)
-  const [sbl] = useRecoilState(gsSprintBacklog)
-  const [fpgl, setFpgl] = useState<string | null>(null)
-  const [fsgl, setFsgl] = useState<string | null>(null)
-  const [fpbl, setFpbl] = useState<string | null>(null)
+  const { pgs, sgs, pbl, sbl, focusPGI, focusSGI, focusPBI, setFocusSGI, setFocusPBI } = useBacklogItems()
 
   useEffect(() => {
-    setFsgl(null)
-    setFpbl(null)
-  }, [fpgl])
+    setFocusSGI(null)
+    setFocusPBI(null)
+  }, [focusPGI, setFocusSGI, setFocusPBI])
 
   useEffect(() => {
-    setFpbl(null)
-  }, [fsgl])
+    setFocusPBI(null)
+  }, [focusSGI, setFocusPBI])
 
   return <Lane4>
-    <KanbanLane
-      title       = "Product Goal"
-      data        = {pgoal}
-      setFocusId  = {setFpgl}
-      />
-    <KanbanLane
-      title       = "Sprint Goal"
-      data        = {sgoal.filter((it) => it.parentId === fpgl)}
-      setFocusId  = {setFsgl}
-      />
-    <KanbanLane
-      title       = "Product Backlog"
-      data        = {pbl.filter((it) => it.parentId === fsgl)}
-      setFocusId  = {setFpbl}
-      />
-    <KanbanLane
-      title       = "Sprint Backlog"
-      data        = {sbl.filter((it) => it.parentId === fpbl)}
-      />
+    <PlanningLane
+      title="Product Goal"
+      data={pgs}
+      itemType={'PGI'}
+    />
+    <PlanningLane
+      title="Sprint Goal"
+      data={sgs.filter((it) => it.parentId === focusPGI)}
+      itemType={'SGI'}
+    />
+    <PlanningLane
+      title="Product Backlog"
+      data={pbl.filter((it) => it.parentId === focusSGI)}
+      itemType={'PBI'}
+    />
+    <PlanningLane
+      title="Sprint Backlog"
+      data={sbl.filter((it) => it.parentId === focusPBI)}
+      itemType={'SBI'}
+    />
   </Lane4>
 }
