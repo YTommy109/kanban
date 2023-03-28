@@ -1,8 +1,7 @@
 import { styled } from 'goober'
-import { BiAddToQueue } from 'react-icons/bi'
 import { BacklogLane } from '@/04_templates/Lane'
 import { KanbanItem2 } from '@/01_atoms/KanbanItem'
-import { AddButton } from '@/01_atoms/buttons/add'
+import { AddButton } from '@/01_atoms/buttons'
 import { useBacklogItems } from '@/hooks/useBacklogItem'
 
 const Div = styled('div')`

@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { styled } from 'goober'
+import { LabelTextArea, LabelText } from '@/02_molecules/form'
 
 const Form = styled('form')`
-.editor div {
-  display: grid;
-  grid-template-columns: 10rem 1fr;
+fieldset > div > div {
+  display:                grid;
+  grid-template-columns:  10rem 1fr;
 }
 `
 
@@ -19,22 +20,24 @@ export function BacklogItemForm() {
         <legend>Add New Backlog Item</legend>
 
         <div className="editor">
-          <div>
-            <label htmlFor="title">タイトル</label>
-            <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
-          </div>
-
-          <div>
-            <label htmlFor="result">成果物 or 完了状態</label>
-            <textarea id="result" value={result} onChange={(e) => setResult(e.target.value)} />
-          </div>
-
-          <div>
-            <label htmlFor="desc">説明</label>
-            <textarea id="desc" value={description} onChange={(e) => setDescription(e.target.value)} />
-          </div>
+          <LabelText
+            title = "タイトル"
+            value = {title}
+            handleChange = {(e) => setTitle(e.target.value)}
+          />
+          <LabelTextArea
+            title = "成果物 (完了状態)"
+            value = {result}
+            rows  = {10}
+            handleChange = {(e) => setResult(e.target.value)}
+          />
+          <LabelTextArea
+            title = "説明"
+            value = {description}
+            rows  = {10}
+            handleChange = {(e) => setDescription(e.target.value)}
+          />
         </div>
-
       </fieldset>
     </Form>
   </>
