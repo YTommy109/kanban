@@ -33,12 +33,12 @@ type Props2 = {
 export const KanbanItem2: FC<Props2> = ({ item }) => {
   const { changeNextState, focusItem, setFocusItem } = useBacklogItems()
 
-  return <Li key={item.id} className={focusItem[item.itemType] === item.id ? 'focus item' : 'item'}>
-    <span
-      onClick={() => setFocusItem((cur) => ({ ...cur, [item.itemType]: item.id }))}
-    >
-      {item.title
-      }</span>
+  return <Li
+    key={item.id}
+    className={focusItem[item.itemType] === item.id ? 'focus item' : 'item'}
+    onClick={() => setFocusItem((cur) => ({ ...cur, [item.itemType]: item.id }))}
+  >
+    <span>{item.title}</span>
     {STATE_VALUE[item.state] && <span onClick={() => changeNextState(item.id)}>{STATE_VALUE[item.state]}</span>}
   </Li>
 }

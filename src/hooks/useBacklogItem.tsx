@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { atom, selector, useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil'
+import { v4 as uuidv4 } from 'uuid'
 import pgoal from '@/_data/productgoal.json'
 import sgoal from '@/_data/sprintgoal.json'
 import pbl from '@/_data/pbl.json'
@@ -69,8 +70,13 @@ export const useBacklogItems = () => {
   const changeNextState = (id: string) =>
     setBacklogItems((cur) => cur.map(it => it.id === id ? { ...it, state: NEXT_STATE[it.state] } : it))
 
-  const addBacklogItem = useCallback((itemType: ItemType) =>
-    setBacklogItems((cur) => [...cur, { ...newItem, itemType: itemType }]), [setBacklogItems])
+  const addBacklogItem = useCallback((itemType: ItemType) => {
+    let parentId: string | null = null
+    if (itemType === 'SBI') { parentId = focusItem['PBI'] }
+    if (itemType === 'PBI') { parentId = focusItem['SGI'] }
+    if (itemType === 'SGI') { parentId = focusItem['PGI'] }
+    setBacklogItems((cur) => [...cur, { ...newItem, id: uuidv4(), itemType: itemType, parentId: parentId }])
+  }, [setBacklogItems, focusItem])
 
   // PGI フォーカス変更
   const setFocusPGI = useCallback((id: string | null) => {
