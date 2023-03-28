@@ -9,6 +9,7 @@
             "Done が見えること",
             "選んだアイテムの詳細が見えること"
         ],
+        "discription": "",
         "state": "ToDo",
         "order": 1,
         "created_at": "2022-06-17T00:00:00.000Z",
@@ -24,6 +25,7 @@
             "Done が見えること",
             "選んだアイテムの詳細が見えること"
         ],
+        "discription": "",
         "state": "ToDo",
         "order": 2,
         "created_at": "2022-06-10T00:00:00.000Z",
@@ -39,6 +41,7 @@
             "Done が見えること",
             "選んだアイテムの詳細が見えること"
         ],
+        "discription": "",
         "state": "ToDo",
         "order": 3,
         "created_at": "2022-06-10T00:00:00.000Z",
@@ -54,6 +57,7 @@
             "Done が見えること",
             "選んだアイテムの詳細が見えること"
         ],
+        "discription": "",
         "state": "ToDo",
         "order": 3,
         "created_at": "2022-06-10T00:00:00.000Z",

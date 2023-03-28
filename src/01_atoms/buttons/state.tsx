@@ -1,4 +1,4 @@
-import { BiAddToQueue } from 'react-icons/bi'
+import { GrCaretNext } from 'react-icons/gr'
 
 type Props = {
   tips: string;
@@ -6,19 +6,17 @@ type Props = {
   disabled?: boolean;
 };
 
-export function AddButton({ tips, handleClick, disabled = false }: Props) {
+export function NextButton({ tips, handleClick, disabled = false }: Props) {
   return <>
     {disabled ?
-      <BiAddToQueue
+      <GrCaretNext
         color="silver"
-        size="1rem"
       />
       :
-      <BiAddToQueue
+      <GrCaretNext
         onClick={handleClick}
         color="gray"
         title={tips}
-        size="1rem"
       />
     }
   </>

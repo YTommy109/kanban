@@ -1,17 +1,22 @@
 import { FC, useMemo } from 'react'
 import { styled } from 'goober'
 import { useBacklogItems } from '@/hooks/useBacklogItem'
+import { NextButton } from '@/01_atoms/buttons/state'
 
 const Li = styled('li')`
-  color:            black;
-  padding:          0.5rem;
-  background-color: lightgoldenrodyellow;
-  border:           solid 2px lightgoldenrodyellow;
+  color:                black;
+  padding:                0.5rem;
+  background-color:     lightgoldenrodyellow;
+  border:                 solid 2px lightgoldenrodyellow;
+  display:                grid;
+  grid-template-columns:  1fr 1rem;
+  align-items:            end;
+
   &.pick {
-    border:         solid 2px khaki;
+    border:               solid 2px khaki;
   }
   &.focus {
-    border:         solid 2px goldenrod;
+    border:               solid 2px goldenrod;
   }
 `
 
@@ -22,12 +27,6 @@ type Props = {
 
 export const KanbanItem: FC<Props> = ({ item, handleClick }) =>
   <Li key={item.id} className="item" onClick={handleClick}>{item.title}</Li>
-
-const STATE_VALUE = {
-  'ToDo': 'Start',
-  'Doing': 'Finish',
-  'Done': null
-}
 
 type Props2 = {
   item: BacklogItem;
@@ -46,6 +45,12 @@ export function KanbanItem2({ item }:Props2) {
     onClick={() => setFocusItem(item.id, item.itemType)}
   >
     <span>{item.title}</span>
-    {STATE_VALUE[item.state] && <span onClick={() => changeNextState(item.id)}>{STATE_VALUE[item.state]}</span>}
+    <span>
+      {['ToDo', 'Doing'].includes(item.state) &&
+        <NextButton
+          handleClick={() => changeNextState(item.id)}
+          tips="change next status" />
+        }
+    </span>
   </Li>
 }
