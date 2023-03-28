@@ -6,7 +6,7 @@ import sgoal from '@/_data/sprintgoal.json'
 import pbl from '@/_data/pbl.json'
 import sbl from '@/_data/sbl.json'
 
-const backlogItems = atom<BacklogItem[]>({
+const backlogItemsAtom = atom<BacklogItem[]>({
   key: 'backlogItems',
   default: pgoal.concat(sgoal, pbl, sbl)
 })
@@ -21,24 +21,29 @@ const focusItemAtom = atom<Record<ItemType, string | null>>({
   }
 })
 
+const focusLaneAtom = atom<ItemType|null>({
+  key: 'focusLane',
+  default: null
+})
+
 const productGoals = selector({
   key: 'productGoals',
-  get: ({ get }) => get(backlogItems).filter((it) => it.itemType === 'PGI')
+  get: ({ get }) => get(backlogItemsAtom).filter((it) => it.itemType === 'PGI')
 })
 
 const sprintGoals = selector({
   key: 'sprintGoals',
-  get: ({ get }) => get(backlogItems).filter((it) => it.itemType === 'SGI')
+  get: ({ get }) => get(backlogItemsAtom).filter((it) => it.itemType === 'SGI')
 })
 
 const productBacklogItems = selector({
   key: 'productBacklogItems',
-  get: ({ get }) => get(backlogItems).filter((it) => it.itemType === 'PBI')
+  get: ({ get }) => get(backlogItemsAtom).filter((it) => it.itemType === 'PBI')
 })
 
 const sprintBacklogItems = selector({
   key: 'sprintBacklogItems',
-  get: ({ get }) => get(backlogItems).filter((it) => it.itemType === 'SBI')
+  get: ({ get }) => get(backlogItemsAtom).filter((it) => it.itemType === 'SBI')
 })
 
 const NEXT_STATE: Record<ItemState, ItemState> = {
@@ -64,8 +69,9 @@ export const useBacklogItems = () => {
   const pbl = useRecoilValue(productBacklogItems)
   const sbl = useRecoilValue(sprintBacklogItems)
   const [focusItem, setFocusItem] = useRecoilState(focusItemAtom)
+  const [focusLane, setFocusLane] = useRecoilState(focusLaneAtom)
 
-  const setBacklogItems = useSetRecoilState(backlogItems)
+  const setBacklogItems = useSetRecoilState(backlogItemsAtom)
 
   const changeNextState = (id: string) =>
     setBacklogItems((cur) => cur.map(it => it.id === id ? { ...it, state: NEXT_STATE[it.state] } : it))
@@ -78,26 +84,10 @@ export const useBacklogItems = () => {
     setBacklogItems((cur) => [...cur, { ...newItem, id: uuidv4(), itemType: itemType, parentId: parentId }])
   }, [setBacklogItems, focusItem])
 
-  // PGI フォーカス変更
-  const setFocusPGI = useCallback((id: string | null) => {
-    setFocusItem((cur) => ({ ...cur, 'PGI': id }))
-  }, [setFocusItem])
-
-  // SGI フォーカス変更
-  const setFocusSGI = useCallback((id: string | null) => {
-    setFocusItem((cur) => ({ ...cur, 'SGI': id }))
-  }, [setFocusItem])
-
-  // PBI フォーカス変更
-  const setFocusPBI = useCallback((id: string | null) => {
-    setFocusItem((cur) => ({ ...cur, 'PBI': id }))
-  }, [setFocusItem])
-
-  // SBI フォーカス変更
-  const setFocusSBI = useCallback((id: string | null) => {
-    setFocusItem((cur) => ({ ...cur, 'SBI': id }))
-  }, [setFocusItem])
-
+  const changeFocusItem = useCallback((id:string|null, itemType:ItemType)=>{
+    setFocusItem((cur) => ({ ...cur, [itemType]: id }))
+    if (id !== null) setFocusLane(() => itemType)
+  }, [setFocusItem, setFocusLane])
   return {
     // バックログ管理
     pgs,
@@ -106,16 +96,14 @@ export const useBacklogItems = () => {
     sbl,
     changeNextState,
     addBacklogItem,
-    // フォーカス管理
+    // フォーカスアイテム管理
     focusItem,
-    setFocusItem,
+    changeFocusItem,
     focusPGI: focusItem['PGI'],
     focusSGI: focusItem['SGI'],
     focusPBI: focusItem['PBI'],
     focusSBI: focusItem['SBI'],
-    setFocusPGI,
-    setFocusSGI,
-    setFocusPBI,
-    setFocusSBI
+    // フォーカスレーン管理
+    focusLane
   }
 }
