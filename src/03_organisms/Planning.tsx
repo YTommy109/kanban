@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import { Lane4 } from '@/04_templates/Lane'
 import { PlanningLane } from '@/02_molecules/PlanningLane'
-import { useBacklogItems } from '@/hooks/useBacklogItem'
+import { useBacklogItems, useFocus } from '@/hooks/backlog'
 
 export function Planning() {
-  const { pgs, sgs, pbl, sbl, focusPGI, focusSGI, focusPBI, changeFocusItem } = useBacklogItems()
+  const { pgs, sgs, pbl, sbl } = useBacklogItems()
+  const { focusPGI, focusSGI, focusPBI, changeFocusItem } = useFocus()
 
   useEffect(() => {
     changeFocusItem(null, 'SGI')

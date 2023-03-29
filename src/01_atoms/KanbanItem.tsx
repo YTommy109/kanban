@@ -1,6 +1,6 @@
 import { FC, useMemo } from 'react'
 import { styled } from 'goober'
-import { useBacklogItems } from '@/hooks/useBacklogItem'
+import { useBacklogItems, useFocus } from '@/hooks/backlog'
 import { NextButton } from '@/01_atoms/buttons/state'
 
 const Li = styled('li')`
@@ -33,7 +33,8 @@ type Props2 = {
 };
 
 export function KanbanItem2({ item }:Props2) {
-  const { changeNextState, focusItem, changeFocusItem: setFocusItem, focusLane } = useBacklogItems()
+  const { changeNextState } = useBacklogItems()
+  const { focusItem, changeFocusItem, focusLane } = useFocus()
   const className = useMemo(() => {
     if (focusItem[item.itemType] !== item.id) return 'item'
     return item.itemType === focusLane ? 'item focus' : 'item pick'
@@ -42,7 +43,7 @@ export function KanbanItem2({ item }:Props2) {
   return <Li
     key={item.id}
     className={className}
-    onClick={() => setFocusItem(item.id, item.itemType)}
+    onClick={() => changeFocusItem(item.id, item.itemType)}
   >
     <span>{item.title}</span>
     <span>

@@ -2,7 +2,7 @@ import { styled } from 'goober'
 import { BacklogLane } from '@/04_templates/Lane'
 import { KanbanItem2 } from '@/01_atoms/KanbanItem'
 import { AddButton } from '@/01_atoms/buttons'
-import { useBacklogItems } from '@/hooks/useBacklogItem'
+import { useBacklogItems, useFocus } from '@/hooks/backlog'
 
 const Div = styled('div')`
   display:        grid;
@@ -28,7 +28,8 @@ type Props = {
 };
 
 export function PlanningLane({ title, data, itemType }: Props) {
-  const { addBacklogItem, focusItem } = useBacklogItems()
+  const { addBacklogItem } = useBacklogItems()
+  const { focusItem } = useFocus()
   return <>
     <BacklogLane title={title}>
       <Div>
