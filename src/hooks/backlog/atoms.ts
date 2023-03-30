@@ -4,13 +4,13 @@ import sgoal from '@/_data/sprintgoal.json'
 import pbl from '@/_data/pbl.json'
 import sbl from '@/_data/sbl.json'
 
-export const backlogItemsAtom = atom<BacklogItem[]>({
-  key: 'backlogItems',
+export const backlogAtom = atom<BacklogItem[]>({
+  key: 'backlogAtom',
   default: pgoal.concat(sgoal, pbl, sbl)
 })
 
-export const focusItemAtom = atom<Record<ItemType, string | null>>({
-  key: 'focusItem',
+export const focusItemIdAtom = atom<Record<ItemType, string | null>>({
+  key: 'focusItemId',
   default: {
     'PGI': null,
     'SGI': null,
@@ -25,21 +25,21 @@ export const focusLaneAtom = atom<ItemType|null>({
 })
 
 export const pgItems = selector({
-  key: 'productGoals',
-  get: ({ get }) => get(backlogItemsAtom).filter((it) => it.itemType === 'PGI')
+  key: 'pgItems',
+  get: ({ get }) => get(backlogAtom).filter((it) => it.itemType === 'PGI')
 })
 
 export const sgItems = selector({
-  key: 'sprintGoals',
-  get: ({ get }) => get(backlogItemsAtom).filter((it) => it.itemType === 'SGI')
+  key: 'sgItems',
+  get: ({ get }) => get(backlogAtom).filter((it) => it.itemType === 'SGI')
 })
 
 export const pbItems = selector({
-  key: 'productBacklogItems',
-  get: ({ get }) => get(backlogItemsAtom).filter((it) => it.itemType === 'PBI')
+  key: 'pbItems',
+  get: ({ get }) => get(backlogAtom).filter((it) => it.itemType === 'PBI')
 })
 
 export const sbItems = selector({
-  key: 'sprintBacklogItems',
-  get: ({ get }) => get(backlogItemsAtom).filter((it) => it.itemType === 'SBI')
+  key: 'sbItems',
+  get: ({ get }) => get(backlogAtom).filter((it) => it.itemType === 'SBI')
 })

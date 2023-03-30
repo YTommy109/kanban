@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
 import { useRecoilState } from 'recoil'
-import { focusItemAtom, focusLaneAtom } from './atoms'
+import { focusItemIdAtom, focusLaneAtom } from './atoms'
 
 export const useFocus = () => {
-  const [focusItem, setFocusItem] = useRecoilState(focusItemAtom)
+  const [focusItem, setFocusItem] = useRecoilState(focusItemIdAtom)
   const [focusLane, setFocusLane] = useRecoilState(focusLaneAtom)
 
   const changeFocusItem = useCallback((id:string|null, itemType:ItemType) => {
