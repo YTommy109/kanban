@@ -31,6 +31,7 @@ export function BacklogItemForm({ isOpen }: Props) {
       <fieldset>
         <legend>Add New Backlog Item</legend>
 
+        <p>{isOpen ? '開' : '閉'}</p>
         <div className="editor">
           <LabelText
             title="タイトル"

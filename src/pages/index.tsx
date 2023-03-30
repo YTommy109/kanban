@@ -18,7 +18,6 @@ export default function Home() {
   const [active, setActive] = useState(0)
   const ref = useRef<HTMLDialogElement>(null)
   const { isOpen, close } = useDialog()
-  const [item, setItem] = useState<BacklogItem | null>(null)
 
   useEffect(() => {
     if (isOpen === true) {
@@ -45,8 +44,10 @@ export default function Home() {
       {active === 1 && <Kanban />}
       {active === 2 && <h1>ユーザーストーリーマップ</h1>}
     </Main>
-    <dialog ref={ref}>
-      {item && <BacklogItemForm isOpen={isOpen} />}
+    <dialog ref={ref} onKeyDown={(e) => {
+      e.key==='Escape' && close()
+      }}>
+        {<BacklogItemForm isOpen={isOpen} />}
       <button onClick={() => close()}>キャンセル</button>
     </dialog>
   </>

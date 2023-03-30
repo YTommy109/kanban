@@ -14,7 +14,7 @@ return <>
     </Head>
     <button onClick={open}>ダイアログ</button>
     <ModalDialog>
-      <BacklogItemForm />
+      <BacklogItemForm isOpen={true} />
     </ModalDialog>
   </>
 }

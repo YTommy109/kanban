@@ -6,11 +6,6 @@ const dialogStore = atom<boolean>({
   default: false
 })
 
-const focusLaneStore = atom<ItemType | null>({
-  key: 'focusLaneStore',
-  default: null
-})
-
 export const useDialog = () => {
   const [isOpen, setIsOpen] = useRecoilState(dialogStore)
 
