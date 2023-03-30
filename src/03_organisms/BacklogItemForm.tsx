@@ -16,14 +16,9 @@ type Props = {
 export function BacklogItemForm({ isOpen }: Props) {
   const [item, setItem] = useState<BacklogItem | null>(null)
   const { getFocusItem } = useBacklog()
+
   useEffect(() => {
-    console.log('pass00')
-    if (isOpen === true) {
-      const hoge = getFocusItem()
-      console.log('pass01')
-      console.log(hoge?.title)
-      setItem(() => getFocusItem())
-    }
+    isOpen === true && setItem(() => getFocusItem())
   }, [getFocusItem, isOpen])
 
   return <>

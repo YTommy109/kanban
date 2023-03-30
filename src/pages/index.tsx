@@ -9,22 +9,15 @@ import { useDialog } from '@/hooks/useDialog'
 
 const menuItems = ['Planning', 'Kanban', 'UserStory'] // メニューリスト
 
-// [x] ダイアログ制御用カスタムフック
-// [x] 最下部に埋め込まれたモーダルダイアログ
-// [ ] 中身の表示されるフォーム
-// [ ] close で閉じる ESC ショートカット
-
 export default function Home() {
   const [active, setActive] = useState(0)
   const ref = useRef<HTMLDialogElement>(null)
   const { isOpen, close } = useDialog()
 
   useEffect(() => {
-    if (isOpen === true) {
-      ref.current?.showModal()
-    } else {
-      ref.current?.close()
-    }
+    isOpen === true
+    ? ref.current?.showModal()
+    : ref.current?.close()
   }, [isOpen])
 
   return <>

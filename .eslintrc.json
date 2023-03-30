@@ -6,6 +6,7 @@
   "rules": {
     "quotes": ["error", "single"],
     "semi": ["error", "never", {"beforeStatementContinuationChars": "never"}],
-    "@typescript-eslint/no-unused-vars": ["error"]
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
   }
 }
