@@ -8,7 +8,7 @@ describe('', () => {
       wrapper: RecoilRoot,
     })
     expect(result.current.focusLane).toBeNull()
-    expect(result.current.focusItem).toEqual({
+    expect(result.current.focusItemId).toEqual({
       'PGI':null,
       'SGI':null,
       'PBI':null,
@@ -24,7 +24,7 @@ describe('', () => {
       result.current.changeFocusItem('1', 'PGI')
     })
     expect(result.current.focusLane).toBe('PGI')
-    expect(result.current.focusItem).toEqual({
+    expect(result.current.focusItemId).toEqual({
       'PGI':'1',
       'SGI':null,
       'PBI':null,

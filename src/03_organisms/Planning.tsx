@@ -5,7 +5,7 @@ import { useBacklog, useFocus } from '@/hooks/backlog'
 
 export function Planning() {
   const { pgs, sgs, pbl, sbl } = useBacklog()
-  const { focusPGI, focusSGI, focusPBI, changeFocusItem } = useFocus()
+  const { focusPGId: focusPGI, focusSGId: focusSGI, focusPBId: focusPBI, changeFocusItem } = useFocus()
 
   useEffect(() => {
     changeFocusItem(null, 'SGI')

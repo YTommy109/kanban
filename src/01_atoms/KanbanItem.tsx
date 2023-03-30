@@ -34,7 +34,7 @@ type Props2 = {
 
 export function KanbanItem2({ item }:Props2) {
   const { changeNextState } = useBacklog()
-  const { focusItem, changeFocusItem, focusLane } = useFocus()
+  const { focusItemId: focusItem, changeFocusItem, focusLane } = useFocus()
   const className = useMemo(() => {
     if (focusItem[item.itemType] !== item.id) return 'item'
     return item.itemType === focusLane ? 'item focus' : 'item pick'

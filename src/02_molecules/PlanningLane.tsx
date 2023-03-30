@@ -29,7 +29,7 @@ type Props = {
 
 export function PlanningLane({ title, data, itemType }: Props) {
   const { addBacklogItem } = useBacklog()
-  const { focusItem } = useFocus()
+  const { focusItemId: focusItem } = useFocus()
   return <>
     <BacklogLane title={title}>
       <Div>

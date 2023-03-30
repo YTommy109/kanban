@@ -6,7 +6,7 @@ import { useBacklog, useFocus } from '@/hooks/backlog'
 
 export function Kanban() {
   const { pgs, sgs, pbl, sbl } = useBacklog()
-  const { focusPGI, focusSGI, focusPBI, focusSBI } = useFocus()
+  const { focusPGId: focusPGI, focusSGId: focusSGI, focusPBId: focusPBI, focusSBId: focusSBI } = useFocus()
   const focusPGItem = useMemo(() => pgs.find((it) => it.id === focusPGI), [focusPGI, pgs])
   const focusSGItem = useMemo(() => sgs.find((it) => it.id === focusSGI), [focusSGI, sgs])
   const focusPBItem = useMemo(() => pbl.find((it) => it.id === focusPBI), [focusPBI, pbl])

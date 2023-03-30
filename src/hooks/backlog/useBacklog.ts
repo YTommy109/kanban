@@ -1,7 +1,36 @@
 import { useCallback } from 'react'
-import { useSetRecoilState, useRecoilValue } from 'recoil'
+import { atom, selector, useSetRecoilState, useRecoilValue } from 'recoil'
 import { v4 as uuidv4 } from 'uuid'
-import {backlogAtom, focusItemIdAtom, pgItems, sgItems, pbItems, sbItems} from './atoms'
+import pgoal from '@/_data/productgoal.json'
+import sgoal from '@/_data/sprintgoal.json'
+import pbl from '@/_data/pbl.json'
+import sbl from '@/_data/sbl.json'
+import { useFocus } from './useFocus'
+
+const backlogStore = atom<BacklogItem[]>({
+  key: 'backlogStore',
+  default: pgoal.concat(sgoal, pbl, sbl)
+})
+
+const pgsStore = selector({
+  key: 'pgsStore',
+  get: ({ get }) => get(backlogStore).filter((it) => it.itemType === 'PGI')
+})
+
+const sgsStore = selector({
+  key: 'sgsStore',
+  get: ({ get }) => get(backlogStore).filter((it) => it.itemType === 'SGI')
+})
+
+const pblStore = selector({
+  key: 'pblStore',
+  get: ({ get }) => get(backlogStore).filter((it) => it.itemType === 'PBI')
+})
+
+const sblStore = selector({
+  key: 'sblStore',
+  get: ({ get }) => get(backlogStore).filter((it) => it.itemType === 'SBI')
+})
 
 const NEXT_STATE: Record<ItemState, ItemState> = {
   'ToDo': 'Doing',
@@ -21,29 +50,30 @@ const newItem: BacklogItem = {
 }
 
 export const useBacklog = () => {
-  const pgs = useRecoilValue(pgItems)
-  const sgs = useRecoilValue(sgItems)
-  const pbl = useRecoilValue(pbItems)
-  const sbl = useRecoilValue(sbItems)
-  const focusItem = useRecoilValue(focusItemIdAtom)
+  const pgs = useRecoilValue(pgsStore)
+  const sgs = useRecoilValue(sgsStore)
+  const pbl = useRecoilValue(pblStore)
+  const sbl = useRecoilValue(sblStore)
+  const {focusItemId: focusItem} = useFocus()
 
-  const setBacklogItems = useSetRecoilState(backlogAtom)
+  const setBacklog = useSetRecoilState(backlogStore)
 
   const changeNextState = useCallback((id: string) =>
-    setBacklogItems((cur) => cur.map(it => it.id === id ? { ...it, state: NEXT_STATE[it.state] } : it))
-  , [setBacklogItems])
+    setBacklog((cur) => cur.map(it => it.id === id ? { ...it, state: NEXT_STATE[it.state] } : it))
+  , [setBacklog])
 
   const addBacklogItem = useCallback((itemType: ItemType) => {
     let parentId: string | null = null
     if (itemType === 'SBI') { parentId = focusItem['PBI'] }
     if (itemType === 'PBI') { parentId = focusItem['SGI'] }
     if (itemType === 'SGI') { parentId = focusItem['PGI'] }
-    setBacklogItems((cur) => [...cur, { ...newItem,
+
+    setBacklog((cur) => [...cur, { ...newItem,
       id: uuidv4(),
       itemType: itemType,
       parentId: parentId
     }])
-  }, [setBacklogItems, focusItem])
+  }, [setBacklog, focusItem])
 
   return {
     // バックログ管理
