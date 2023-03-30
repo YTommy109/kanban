@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { atom, useRecoilState } from 'recoil'
 
+// フォーカスされてるアイテムの管理
 const focusItemIdStore = atom<Record<ItemType, string | null>>({
   key: 'focusItemIdStore',
   default: {
@@ -11,7 +12,8 @@ const focusItemIdStore = atom<Record<ItemType, string | null>>({
   }
 })
 
-const focusLaneStore = atom<ItemType|null>({
+// フォーカスされてるレーンの管理
+const focusLaneStore = atom<ItemType | null>({
   key: 'focusLaneStore',
   default: null
 })
@@ -20,7 +22,7 @@ export const useFocus = () => {
   const [focusItemId, setFocusItemId] = useRecoilState(focusItemIdStore)
   const [focusLane, setFocusLane] = useRecoilState(focusLaneStore)
 
-  const changeFocusItem = useCallback((id:string|null, itemType:ItemType) => {
+  const changeFocusItem = useCallback((id: string | null, itemType: ItemType) => {
     setFocusItemId((cur) => ({ ...cur, [itemType]: id }))
     if (id !== null) setFocusLane(() => itemType)
   }, [setFocusItemId, setFocusLane])

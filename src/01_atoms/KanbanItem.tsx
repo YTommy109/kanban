@@ -1,6 +1,7 @@
 import { FC, useMemo } from 'react'
 import { styled } from 'goober'
 import { useBacklog, useFocus } from '@/hooks/backlog'
+import { useDialog } from '@/hooks/useDialog'
 import { NextButton } from '@/01_atoms/buttons/state'
 
 const Li = styled('li')`
@@ -32,18 +33,20 @@ type Props2 = {
   item: BacklogItem;
 };
 
-export function KanbanItem2({ item }:Props2) {
+export function KanbanItem2({ item }: Props2) {
   const { changeNextState } = useBacklog()
-  const { focusItemId: focusItem, changeFocusItem, focusLane } = useFocus()
+  const { focusItemId, changeFocusItem, focusLane } = useFocus()
+  const { open } = useDialog()
   const className = useMemo(() => {
-    if (focusItem[item.itemType] !== item.id) return 'item'
+    if (focusItemId[item.itemType] !== item.id) return 'item'
     return item.itemType === focusLane ? 'item focus' : 'item pick'
-  }, [focusItem, focusLane, item.id, item.itemType])
+  }, [focusItemId, focusLane, item.id, item.itemType])
 
   return <Li
     key={item.id}
     className={className}
     onClick={() => changeFocusItem(item.id, item.itemType)}
+    onDoubleClick={() => open()}
   >
     <span>{item.title}</span>
     <span>
@@ -51,7 +54,7 @@ export function KanbanItem2({ item }:Props2) {
         <NextButton
           handleClick={() => changeNextState(item.id)}
           tips="change next status" />
-        }
+      }
     </span>
   </Li>
 }

@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { atom, selector, useSetRecoilState, useRecoilValue } from 'recoil'
+import { atom, selector, useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil'
 import { v4 as uuidv4 } from 'uuid'
 import pgoal from '@/_data/productgoal.json'
 import sgoal from '@/_data/sprintgoal.json'
@@ -50,30 +50,37 @@ const newItem: BacklogItem = {
 }
 
 export const useBacklog = () => {
+  const [backlog, setBacklog] = useRecoilState(backlogStore)
   const pgs = useRecoilValue(pgsStore)
   const sgs = useRecoilValue(sgsStore)
   const pbl = useRecoilValue(pblStore)
   const sbl = useRecoilValue(sblStore)
-  const {focusItemId: focusItem} = useFocus()
+  const { focusLane, focusItemId } = useFocus()
 
-  const setBacklog = useSetRecoilState(backlogStore)
 
   const changeNextState = useCallback((id: string) =>
     setBacklog((cur) => cur.map(it => it.id === id ? { ...it, state: NEXT_STATE[it.state] } : it))
-  , [setBacklog])
+    , [setBacklog])
 
   const addBacklogItem = useCallback((itemType: ItemType) => {
     let parentId: string | null = null
-    if (itemType === 'SBI') { parentId = focusItem['PBI'] }
-    if (itemType === 'PBI') { parentId = focusItem['SGI'] }
-    if (itemType === 'SGI') { parentId = focusItem['PGI'] }
+    if (itemType === 'SBI') { parentId = focusItemId['PBI'] }
+    if (itemType === 'PBI') { parentId = focusItemId['SGI'] }
+    if (itemType === 'SGI') { parentId = focusItemId['PGI'] }
 
-    setBacklog((cur) => [...cur, { ...newItem,
+    setBacklog((cur) => [...cur, {
+      ...newItem,
       id: uuidv4(),
       itemType: itemType,
       parentId: parentId
     }])
-  }, [setBacklog, focusItem])
+  }, [setBacklog, focusItemId])
+
+  const getFocusItem = useCallback((): BacklogItem | null => {
+    if (focusLane === null) return null
+    const result = backlog.filter(it => it.id === focusItemId[focusLane]).pop()
+    return result ?? null
+  }, [backlog, focusItemId, focusLane])
 
   return {
     // バックログ管理
@@ -82,6 +89,7 @@ export const useBacklog = () => {
     pbl,
     sbl,
     changeNextState,
-    addBacklogItem
+    addBacklogItem,
+    getFocusItem
   }
 }

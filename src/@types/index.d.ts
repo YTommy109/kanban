@@ -6,7 +6,7 @@ interface BacklogItem {
   itemType: ItemType;       // アイテムの種類
   title: string;            // タイトル
   dod: string[];            // 完了条件
-  discription?: string;     // 説明
+  description?: string;     // 説明
   state: ItemState;         // 状態
   order: number;            // 作業着手順序
   created_at: string;       // 作成日

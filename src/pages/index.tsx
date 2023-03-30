@@ -1,14 +1,32 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Head from 'next/head'
 import { Main } from '@/04_templates/MainPanel'
 import { Kanban } from '@/03_organisms/Kanban'
 import { Planning } from '@/03_organisms/Planning'
+import { BacklogItemForm } from '@/03_organisms/BacklogItemForm'
 import { Switcher } from '@/02_molecules/Switcher'
+import { useDialog } from '@/hooks/useDialog'
 
 const menuItems = ['Planning', 'Kanban', 'UserStory'] // メニューリスト
 
+// [x] ダイアログ制御用カスタムフック
+// [x] 最下部に埋め込まれたモーダルダイアログ
+// [ ] 中身の表示されるフォーム
+// [ ] close で閉じる ESC ショートカット
+
 export default function Home() {
   const [active, setActive] = useState(0)
+  const ref = useRef<HTMLDialogElement>(null)
+  const { isOpen, close } = useDialog()
+  const [item, setItem] = useState<BacklogItem | null>(null)
+
+  useEffect(() => {
+    if (isOpen === true) {
+      ref.current?.showModal()
+    } else {
+      ref.current?.close()
+    }
+  }, [isOpen])
 
   return <>
     <Head>
@@ -27,5 +45,9 @@ export default function Home() {
       {active === 1 && <Kanban />}
       {active === 2 && <h1>ユーザーストーリーマップ</h1>}
     </Main>
+    <dialog ref={ref}>
+      {item && <BacklogItemForm isOpen={isOpen} />}
+      <button onClick={() => close()}>キャンセル</button>
+    </dialog>
   </>
 }
