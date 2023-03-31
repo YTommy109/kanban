@@ -30,7 +30,6 @@ const Ul = styled('ul')`
 type Props = {
   items: string[];                // メニューリスト
   active: number;                 // 現在選択されてる番号
-  /* eslint no-unused-vars: 0 */
   setActive: (v: number) => void  // 選択を変更するセッター
 }
 

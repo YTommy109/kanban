@@ -3,7 +3,6 @@ import { useId, ChangeEvent } from 'react'
 type Props = {
   title: string;
   value: string;
-  /* eslint no-unused-vars: 0 */
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 

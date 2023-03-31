@@ -14,13 +14,10 @@ fieldset > div > div {
 // [ ] 保存ボタン
 // [ ] Recoilに吐き出す保存ボタンのクリック処理
 
-/* eslint no-unused-vars: 0 */
-type Hoge = (_i: number, _v: string) => void;
-
 type Props2 = {
   title: string
   dod: string[]
-  handleChangeDoD: Hoge
+  handleChangeDoD: (_i: number, _v: string) => void;
 }
 
 export function ListOfDoD({ title, dod, handleChangeDoD }: Props2) {
@@ -28,7 +25,7 @@ export function ListOfDoD({ title, dod, handleChangeDoD }: Props2) {
     <span>{title}</span>
     <ul>
       <li>
-        <input type="checkbox" />
+        <input type="checkbox" placeholder="短くて分かりやすい名前" />
         <input
           type="text"
           value={dod[0]}
