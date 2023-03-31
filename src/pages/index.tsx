@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import Head from 'next/head'
+import { styled } from 'goober'
 import { Main } from '@/04_templates/MainPanel'
 import { Kanban } from '@/03_organisms/Kanban'
 import { Planning } from '@/03_organisms/Planning'
@@ -8,6 +9,10 @@ import { Switcher } from '@/02_molecules/Switcher'
 import { useDialog } from '@/hooks/useDialog'
 
 const menuItems = ['Planning', 'Kanban', 'UserStory'] // メニューリスト
+
+const Div = styled('div')`
+  width: 30rem;
+`
 
 export default function Home() {
   const [active, setActive] = useState(0)
@@ -37,11 +42,13 @@ export default function Home() {
       {active === 1 && <Kanban />}
       {active === 2 && <h1>ユーザーストーリーマップ</h1>}
     </Main>
-    <dialog ref={ref} onKeyDown={(e) => {
-      e.key==='Escape' && close()
-      }}>
-        {<BacklogItemForm isOpen={isOpen} />}
-      <button onClick={() => close()}>キャンセル</button>
-    </dialog>
+      <dialog ref={ref} onKeyDown={(e) => {
+        e.key==='Escape' && close()
+        }}>
+        <Div>
+          {<BacklogItemForm isOpen={isOpen} />}
+          <button onClick={() => close()}>キャンセル</button>
+        </Div>
+      </dialog>
   </>
 }

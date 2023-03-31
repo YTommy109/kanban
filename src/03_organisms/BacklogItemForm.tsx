@@ -5,13 +5,14 @@ import { useBacklog } from '@/hooks/backlog'
 import { ListEditor } from './forms/ListEditor'
 
 const Form = styled('form')`
-legend {
-  text-align:   right;
-}
-fieldset > div {
-  display:      grid;
-  grid-row-gap: 1rem;
-}
+  width:          100%;
+  legend {
+    text-align:   right;
+  }
+  fieldset > div {
+    display:      grid;
+    grid-row-gap: 1rem;
+  }
 `
 
 // [ ] 保存ボタン

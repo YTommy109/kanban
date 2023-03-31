@@ -4,7 +4,7 @@ const Input = styled('input')`
   border:                 none;
   outline:                none;
   border-bottom:          2px solid gainsboro;
-  width:                  20rem;
+  width:                  100%;
   &:focus {
     border-bottom-color:  gray;
   }
