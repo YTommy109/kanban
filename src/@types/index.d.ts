@@ -10,7 +10,7 @@ interface BacklogItem {
   order: number;          // 作業着手順序
   created_at: string;     // 作成日
   parentId?: string;      // 親
-};
+}
 
 declare module '@/_data/productgoal.json' {
   const data: BacklogItem[]
