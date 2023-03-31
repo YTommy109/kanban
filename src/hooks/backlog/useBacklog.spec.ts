@@ -4,7 +4,7 @@ import { useBacklog } from './useBacklog'
 
 describe('', () => {
   it('初期状態は null である', () => {
-    const {result} = renderHook(() => useBacklog(), {
+    const { result } = renderHook(() => useBacklog(), {
       wrapper: RecoilRoot,
     })
     expect(result.current.pgs).toHaveLength(2)
@@ -13,7 +13,7 @@ describe('', () => {
     expect(result.current.sbl).toHaveLength(5)
   })
   it('SBI を追加できる', async () => {
-    const {result} = renderHook(() => useBacklog(), {
+    const { result } = renderHook(() => useBacklog(), {
       wrapper: RecoilRoot,
     })
     await act(async () => {
@@ -21,4 +21,5 @@ describe('', () => {
     })
     expect(result.current.sbl).toHaveLength(6)
   })
+  it.todo('一件のアイテムを更新できる')
 })

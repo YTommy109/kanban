@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { atom, selector, useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil'
+import { atom, selector, useRecoilState, useRecoilValue } from 'recoil'
 import { v4 as uuidv4 } from 'uuid'
 import pgoal from '@/_data/productgoal.json'
 import sgoal from '@/_data/sprintgoal.json'

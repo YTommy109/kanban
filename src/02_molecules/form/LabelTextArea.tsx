@@ -1,16 +1,17 @@
 import { useId, ChangeEvent } from 'react'
 
 type Props = {
-  title:string;
-  value:string;
-  handleChange:(e:ChangeEvent<HTMLTextAreaElement>)=>void;
-  rows?:number;
+  title: string;
+  value: string;
+  /* eslint no-unused-vars: 0 */
+  handleChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  rows?: number;
 }
 
-export function LabelTextArea({title, value, handleChange, rows=5}:Props) {
+export function LabelTextArea({ title, value, handleChange, rows = 5 }: Props) {
   const id = useId()
 
-return <>
+  return <>
     <div>
       <label htmlFor={id}>{title}</label>
       <textarea id={id} rows={rows} value={value} onChange={handleChange} />
