@@ -1,54 +1,21 @@
 import { useEffect, useState } from 'react'
 import { styled } from 'goober'
-import { LabelTextArea, LabelText } from '@/02_molecules/form'
+import { LabelTextArea, LabelText } from '@/02_molecules/forms'
 import { useBacklog } from '@/hooks/backlog'
+import { ListEditor } from './forms/ListEditor'
 
 const Form = styled('form')`
-fieldset > div > div {
-  display:                grid;
-  grid-template-columns:  10rem 1fr;
+legend {
+  text-align:   right;
+}
+fieldset > div {
+  display:      grid;
+  grid-row-gap: 1rem;
 }
 `
 
-// [ ] チェックボックス三つで構成されたdod
 // [ ] 保存ボタン
 // [ ] Recoilに吐き出す保存ボタンのクリック処理
-
-type Props2 = {
-  title: string
-  dod: string[]
-  handleChangeDoD: (_i: number, _v: string) => void;
-}
-
-export function ListOfDoD({ title, dod, handleChangeDoD }: Props2) {
-  return <div>
-    <span>{title}</span>
-    <ul>
-      <li>
-        <input type="checkbox" placeholder="短くて分かりやすい名前" />
-        <input
-          type="text"
-          value={dod[0]}
-          onChange={(e) => handleChangeDoD(0, e.target.value)}
-        />
-      </li>
-      <li>
-        <input type="checkbox" />
-        <input type="text"
-          value={dod[1]}
-          onChange={(e) => handleChangeDoD(1, e.target.value)}
-        />
-      </li>
-      <li>
-        <input type="checkbox" />
-        <input type="text"
-          value={dod[2]}
-          onChange={(e) => handleChangeDoD(2, e.target.value)}
-        />
-      </li>
-    </ul>
-  </div>
-}
 
 type Props = {
   isOpen: boolean
@@ -74,19 +41,18 @@ export function BacklogItemForm({ isOpen }: Props) {
   return <>
     <Form>
       <fieldset>
-        <legend>Add New Backlog Item</legend>
-
-        <p>{isOpen ? '開' : '閉'}</p>
+        <legend>Backlog Item</legend>
         <div>
           <LabelText
             title="タイトル"
             value={item?.title ?? ''}
-            handleChange={(e) => setItem((cur) => cur && ({ ...cur, title: e.target.value }))}
+            handleChange={(value) => setItem((cur) => cur && ({ ...cur, title: value }))}
           />
-          <ListOfDoD
-            title='成果物 (完了状態)'
-            dod={item?.dod ?? []}
-            handleChangeDoD={updateDod} />
+          <ListEditor
+            title             = '成果物 (完了状態)'
+            dod               = {item?.dod ?? []}
+            handleChangeList  = {updateDod}
+          />
           <LabelTextArea
             title="説明"
             value={item?.description ?? ''}
