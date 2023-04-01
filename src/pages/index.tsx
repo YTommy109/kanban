@@ -7,6 +7,7 @@ import { Planning } from '@/03_organisms/Planning'
 import { BacklogItemForm } from '@/03_organisms/BacklogItemForm'
 import { Switcher } from '@/02_molecules/Switcher'
 import { useDialog } from '@/hooks/useDialog'
+import { FaWindowClose } from 'react-icons/fa'
 
 const menuItems = ['Planning', 'Kanban', 'UserStory'] // メニューリスト
 
@@ -44,10 +45,10 @@ export default function Home() {
     </Main>
       <dialog ref={ref} onKeyDown={(e) => {
         e.key==='Escape' && close()
-        }}>
+      }}>
+        <FaWindowClose onClick={close} />
         <Div>
-          {<BacklogItemForm isOpen={isOpen} />}
-          <button onClick={() => close()}>キャンセル</button>
+          {<BacklogItemForm isOpen={isOpen} handleClose={close} />}
         </Div>
       </dialog>
   </>

@@ -32,3 +32,8 @@ declare module '@/_data/sbl.json' {
   const data: BacklogItem[]
   export = data;
 }
+
+type ButtonProps = {
+  label?:string
+  fn?:()=>void
+}
