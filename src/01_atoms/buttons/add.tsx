@@ -10,15 +10,18 @@ export function AddButton({ tips, handleClick, disabled = false }: Props) {
   return <>
     {disabled ?
       <BiAddToQueue
-        color="silver"
-        size="1rem"
+        color       = "silver"
+        title       = {tips}
+        size        = "1rem"
+        data-testid = "add_button"
       />
       :
       <BiAddToQueue
-        onClick={handleClick}
-        color="gray"
-        title={tips}
-        size="1rem"
+        onClick     = {handleClick}
+        color       = "gray"
+        title       = {tips}
+        size        = "1rem"
+        data-testid = "add_button"
       />
     }
   </>

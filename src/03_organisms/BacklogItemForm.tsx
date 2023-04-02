@@ -21,21 +21,26 @@ const Form = styled('form')`
   }
 `
 
-// [ ] 保存ボタン
-// [ ] Recoilに吐き出す保存ボタンのクリック処理
-
 /**
  * バックログアイテムの編集フォーム
  */
-
 type Props = {
   isOpen:boolean          // ダイアログ状態 (true:開, false:閉)
   handleClose:()=>void    // ダイアログを閉じるための関数
 }
 export function BacklogItemForm({ isOpen, handleClose }: Props) {
   const [item, setItem] = useState<BacklogItem | null>(null)
-  const {getFocusItem} = useBacklog()
+  const {getFocusItem, updateBacklogItem} = useBacklog()
 
+  useEffect(() => {
+    isOpen === true && setItem(() => getFocusItem())
+  }, [getFocusItem, isOpen])
+
+  /**
+   * DoD リストを更新する
+   * @param index 対象のインデックス
+   * @param value 書き換える内容
+   */
   const updateDod = (index: number, value: string) => {
     setItem((cur) => cur && ({
       ...cur,
@@ -46,9 +51,13 @@ export function BacklogItemForm({ isOpen, handleClose }: Props) {
     }))
   }
 
-  useEffect(() => {
-    isOpen === true && setItem(() => getFocusItem())
-  }, [getFocusItem, isOpen])
+  /**
+   * 編集終了
+   */
+  const finishEdit = () => {
+    item && updateBacklogItem(item)
+    handleClose()
+  }
 
   return <>
     <Form method="dialog">
@@ -73,7 +82,7 @@ export function BacklogItemForm({ isOpen, handleClose }: Props) {
           />
         </div>
         <YesNoButtons
-          ok      = {{fn:handleClose}}
+          ok      = {{fn:finishEdit}}
           cancel  = {{fn:handleClose}} />
       </fieldset>
     </Form>

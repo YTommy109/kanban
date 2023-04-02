@@ -1,15 +1,11 @@
 import { useCallback } from 'react'
 import { atom, selector, useRecoilState, useRecoilValue } from 'recoil'
 import { v4 as uuidv4 } from 'uuid'
-import pgoal from '@/_data/productgoal.json'
-import sgoal from '@/_data/sprintgoal.json'
-import pbl from '@/_data/pbl.json'
-import sbl from '@/_data/sbl.json'
 import { useFocus } from './useFocus'
 
 const backlogStore = atom<BacklogItem[]>({
   key: 'backlogStore',
-  default: pgoal.concat(sgoal, pbl, sbl)
+  default: []
 })
 
 const pgsStore = selector({
@@ -58,10 +54,25 @@ export const useBacklog = () => {
   const { focusLane, focusItemId } = useFocus()
 
 
-  const changeNextState = useCallback((id: string) =>
+  /** バックログアイテムを初期化する
+   * 空の時のみ動作する
+   */
+  const initBaclkigItems = (items:BacklogItem[]) => {
+    setBacklog((cur) => cur.length === 0 ? items : cur)
+  } 
+
+  /**
+   * バックログアイテムの状態を次の状態へ変える
+   * @param id 対象アイテムの ID
+   */
+  const changeNextState = useCallback((id:string) =>
     setBacklog((cur) => cur.map(it => it.id === id ? { ...it, state: NEXT_STATE[it.state] } : it))
     , [setBacklog])
 
+  /**
+   * バックログアイテムの追加
+   * @param itemType アイテムの種類
+   */
   const addBacklogItem = useCallback((itemType: ItemType) => {
     let parentId: string | null = null
     if (itemType === 'SBI') { parentId = focusItemId['PBI'] }
@@ -76,11 +87,23 @@ export const useBacklog = () => {
     }])
   }, [setBacklog, focusItemId])
 
+  /**
+   * フォーカスアイテムの取得
+   */
   const getFocusItem = useCallback((): BacklogItem | null => {
     if (focusLane === null) return null
     const result = backlog.filter(it => it.id === focusItemId[focusLane]).pop()
     return result ?? null
   }, [backlog, focusItemId, focusLane])
+
+
+  /**
+   * バックログアイテムの更新
+   * @param item 置き換えるバックログアイテム
+   */
+  const updateBacklogItem = (item:BacklogItem):void => {
+    setBacklog((cur) => cur.map(it => it.id === item.id ? item : it))
+  }
 
   return {
     // バックログ管理
@@ -90,6 +113,8 @@ export const useBacklog = () => {
     sbl,
     changeNextState,
     addBacklogItem,
-    getFocusItem
+    getFocusItem,
+    updateBacklogItem,
+    initBaclkigItems
   }
 }

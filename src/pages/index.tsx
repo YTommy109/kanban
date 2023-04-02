@@ -8,6 +8,16 @@ import { BacklogItemForm } from '@/03_organisms/BacklogItemForm'
 import { Switcher } from '@/02_molecules/Switcher'
 import { useDialog } from '@/hooks/useDialog'
 import { FaWindowClose } from 'react-icons/fa'
+import { useBacklog } from '@/hooks/backlog'
+import { backlogItems } from '@/_data/'
+
+export async function getStaticProps() {
+  return {
+    props: {
+      items: backlogItems
+    }
+  }
+}
 
 const menuItems = ['Planning', 'Kanban', 'UserStory'] // メニューリスト
 
@@ -15,10 +25,15 @@ const Div = styled('div')`
   width: 30rem;
 `
 
-export default function Home() {
+type Props = {
+  items:BacklogItem[]
+}
+export default function Home({items}:Props) {
   const [active, setActive] = useState(0)
   const ref = useRef<HTMLDialogElement>(null)
   const { isOpen, close } = useDialog()
+  const { initBaclkigItems } = useBacklog()
+  initBaclkigItems(items)
 
   useEffect(() => {
     isOpen === true
