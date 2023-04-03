@@ -3,7 +3,7 @@ import { styled } from 'goober'
 import { LabelTextArea, LabelText } from '@/02_molecules/forms'
 import { YesNoButtons } from '@/02_molecules/forms/YesNoButton'
 import { useBacklog } from '@/hooks/backlog'
-import { ListEditor } from './forms/ListEditor'
+import { ListEditor } from '../02_molecules/forms/ListEditor'
 
 
 const Form = styled('form')`
@@ -70,15 +70,16 @@ export function BacklogItemForm({ isOpen, handleClose }: Props) {
             handleChange={(value) => setItem((cur) => cur && ({ ...cur, title: value }))}
           />
           <ListEditor
-            title             = '成果物 (完了状態)'
-            dod               = {item?.dod ?? []}
-            handleChangeList  = {updateDod}
+            title           = '成果物 (完了状態)'
+            items           = {item?.dod ?? []}
+            handleChangeAt  = {updateDod}
+            placeholder     = '成果物 / 完了状態'
           />
           <LabelTextArea
-            title="説明"
-            value={item?.description ?? ''}
-            rows={10}
-            handleChange={(e) => setItem((cur) => cur && ({ ...cur, description: e.target.value }))}
+            title           = "説明"
+            value           = {item?.description ?? ''}
+            rows            = {10}
+            handleChange    = {(e) => setItem((cur) => cur && ({ ...cur, description: e.target.value }))}
           />
         </div>
         <YesNoButtons

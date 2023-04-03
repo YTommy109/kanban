@@ -4,7 +4,7 @@ import { ListEditor } from './ListEditor'
 describe('ListEditor について', () => {
   const mockFn = jest.fn()
   const setup = () => {
-    render(<ListEditor title="TITLE" dod={['', '']} handleChangeList={mockFn} />)
+    render(<ListEditor title="見出し" items={['', '']} handleChangeAt={mockFn} />)
   }
 
   beforeEach(() => {
@@ -13,7 +13,6 @@ describe('ListEditor について', () => {
 
   it('', async () => {
     setup()
-    expect(screen.getByText('TITLE')).toBeInTheDocument()
+    expect(screen.getByText('見出し')).toBeInTheDocument()
   })
-
 })
