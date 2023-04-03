@@ -1,10 +1,7 @@
-import { useEffect, useState } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 import { styled } from 'goober'
 import { LabelTextArea, LabelText } from '@/02_molecules/forms'
-import { YesNoButtons } from '@/02_molecules/forms/YesNoButton'
-import { useBacklog } from '@/hooks/backlog'
 import { ListEditor } from '../../02_molecules/forms/ListEditor'
-
 
 const Form = styled('form')`
   width:          100%;
@@ -25,17 +22,10 @@ const Form = styled('form')`
  * バックログアイテムの編集フォーム
  */
 type Props = {
-  isOpen:boolean          // ダイアログ状態 (true:開, false:閉)
-  handleClose:()=>void    // ダイアログを閉じるための関数
+  item:BacklogItem
+  setItem:Dispatch<SetStateAction<BacklogItem>>
 }
-export function BacklogItemForm({ isOpen, handleClose }: Props) {
-  const [item, setItem] = useState<BacklogItem | null>(null)
-  const {getFocusItem, updateBacklogItem} = useBacklog()
-
-  useEffect(() => {
-    isOpen === true && setItem(() => getFocusItem())
-  }, [getFocusItem, isOpen])
-
+export function BacklogItemForm({item, setItem}: Props) {
   /**
    * DoD リストを更新する
    * @param index 対象のインデックス
@@ -51,40 +41,29 @@ export function BacklogItemForm({ isOpen, handleClose }: Props) {
     }))
   }
 
-  /**
-   * 編集終了
-   */
-  const finishEdit = () => {
-    item && updateBacklogItem(item)
-    handleClose()
-  }
-
   return <>
     <Form method="dialog">
       <fieldset>
         <legend>Backlog Item</legend>
         <div>
           <LabelText
-            title="タイトル"
-            value={item?.title ?? ''}
-            handleChange={(value) => setItem((cur) => cur && ({ ...cur, title: value }))}
+            title           = "タイトル"
+            value           = {item.title ?? ''}
+            handleChange    = {(value) => setItem((cur) => cur && ({ ...cur, title: value }))}
           />
           <ListEditor
             title           = '成果物 (完了状態)'
-            items           = {item?.dod ?? []}
+            items           = {item.dod ?? []}
             handleChangeAt  = {updateDod}
             placeholder     = '成果物 / 完了状態'
           />
           <LabelTextArea
             title           = "説明"
-            value           = {item?.description ?? ''}
+            value           = {item.description ?? ''}
             rows            = {10}
             handleChange    = {(e) => setItem((cur) => cur && ({ ...cur, description: e.target.value }))}
           />
         </div>
-        <YesNoButtons
-          ok      = {{fn:finishEdit}}
-          cancel  = {{fn:handleClose}} />
       </fieldset>
     </Form>
   </>
