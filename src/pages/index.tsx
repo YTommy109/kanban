@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import { Main } from '@/04_templates/MainPanel'
 import { Kanban } from '@/03_organisms/Kanban'
@@ -24,7 +24,9 @@ type Props = {
 export default function Home({items}:Props) {
   const [active, setActive] = useState(0)
   const { initBaclkigItems } = useBacklog()
-  initBaclkigItems(items)
+  useEffect(() => {
+    initBaclkigItems(items)
+  }, [items, initBaclkigItems])
 
   return <>
     <Head>
