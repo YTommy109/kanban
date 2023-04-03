@@ -1,13 +1,10 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import Head from 'next/head'
-import { styled } from 'goober'
 import { Main } from '@/04_templates/MainPanel'
 import { Kanban } from '@/03_organisms/Kanban'
 import { Planning } from '@/03_organisms/Planning'
-import { BacklogItemForm } from '@/03_organisms/BacklogItemForm'
+import { BacklogEditDialog } from '@/03_organisms/BacklogEditDialog'
 import { Switcher } from '@/02_molecules/Switcher'
-import { useDialog } from '@/hooks/useDialog'
-import { FaWindowClose } from 'react-icons/fa'
 import { useBacklog } from '@/hooks/backlog'
 import { backlogItems } from '@/_data/'
 
@@ -21,25 +18,13 @@ export async function getStaticProps() {
 
 const menuItems = ['Planning', 'Kanban', 'UserStory'] // メニューリスト
 
-const Div = styled('div')`
-  width: 30rem;
-`
-
 type Props = {
   items:BacklogItem[]
 }
 export default function Home({items}:Props) {
   const [active, setActive] = useState(0)
-  const ref = useRef<HTMLDialogElement>(null)
-  const { isOpen, close } = useDialog()
   const { initBaclkigItems } = useBacklog()
   initBaclkigItems(items)
-
-  useEffect(() => {
-    isOpen === true
-    ? ref.current?.showModal()
-    : ref.current?.close()
-  }, [isOpen])
 
   return <>
     <Head>
@@ -50,21 +35,14 @@ export default function Home({items}:Props) {
     </Head>
     <Main>
       <Switcher
-        items={menuItems}       // メニューリスト
-        active={active}         // 選択番号
-        setActive={setActive}   // 選択番号変更セッター
+        items     = {menuItems}     // メニューリスト
+        active    = {active}        // 選択番号
+        setActive = {setActive}     // 選択番号変更セッター
       />
       {active === 0 && <Planning />}
       {active === 1 && <Kanban />}
       {active === 2 && <h1>ユーザーストーリーマップ</h1>}
     </Main>
-      <dialog ref={ref} onKeyDown={(e) => {
-        e.key==='Escape' && close()
-      }}>
-        <FaWindowClose onClick={close} />
-        <Div>
-          {<BacklogItemForm isOpen={isOpen} handleClose={close} />}
-        </Div>
-      </dialog>
+    <BacklogEditDialog />
   </>
 }

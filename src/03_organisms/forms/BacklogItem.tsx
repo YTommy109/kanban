@@ -3,7 +3,7 @@ import { styled } from 'goober'
 import { LabelTextArea, LabelText } from '@/02_molecules/forms'
 import { YesNoButtons } from '@/02_molecules/forms/YesNoButton'
 import { useBacklog } from '@/hooks/backlog'
-import { ListEditor } from '../02_molecules/forms/ListEditor'
+import { ListEditor } from '../../02_molecules/forms/ListEditor'
 
 
 const Form = styled('form')`
