@@ -1,8 +1,8 @@
 import { styled } from 'goober'
-import { BiAddToQueue } from 'react-icons/bi'
-import { KanbanItem2 } from '@/01_atoms/KanbanItem'
 import { BacklogLane } from '@/04_templates/Lane'
-import { useBacklogItems } from '@/hooks/useBacklogItem'
+import { KanbanItem2 } from '@/01_atoms/KanbanItem'
+import { AddButton } from '@/01_atoms/buttons'
+import { useBacklog, useFocus } from '@/hooks/backlog'
 
 const Div = styled('div')`
   display:        grid;
@@ -14,14 +14,22 @@ const Div = styled('div')`
   }
 `
 
+const PARENT: Record<ItemType, ItemType> = {
+  'SBI': 'PBI',
+  'PBI': 'SGI',
+  'SGI': 'PGI',
+  'PGI': 'PGI',
+}
+
 type Props = {
-  title: string;
-  data: BacklogItem[];
-  itemType: ItemType;
+  title: string;          // レーンタイトル
+  data: BacklogItem[];    // バックログアイテムリスト
+  itemType: ItemType;     // バックログアイテムの種類 & レーンの種類
 };
 
 export function PlanningLane({ title, data, itemType }: Props) {
-  const { addBacklogItem } = useBacklogItems()
+  const { addBacklogItem } = useBacklog()
+  const { focusItemId: focusItem } = useFocus()
   return <>
     <BacklogLane title={title}>
       <Div>
@@ -33,10 +41,10 @@ export function PlanningLane({ title, data, itemType }: Props) {
             />
           ))}
         </ul>
-        <BiAddToQueue
-          onClick={() => addBacklogItem(itemType)}
-          color="gray"
-          title='Add new ticket'
+        <AddButton
+          disabled={itemType !== 'PGI' && focusItem[PARENT[itemType]] === null}
+          handleClick={() => addBacklogItem(itemType)}
+          tips='Add new ticket'
         />
       </Div>
     </BacklogLane>

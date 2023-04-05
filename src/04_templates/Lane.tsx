@@ -1,6 +1,6 @@
 import { styled } from 'goober'
 
-export const Lane2_200 = styled('div')`
+export const Lane2_22rem = styled('div')`
   display:                grid;
   grid-template-columns:  1fr 22rem;
 `
