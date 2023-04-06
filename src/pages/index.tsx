@@ -1,5 +1,6 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useMemo, useState} from 'react'
 import Head from 'next/head'
+import {styled} from 'goober'
 import {Main} from '@/04_templates/MainPanel'
 import {Kanban} from '@/03_organisms/Kanban'
 import {Planning} from '@/03_organisms/Planning'
@@ -7,6 +8,10 @@ import {BacklogEditDialog} from '@/03_organisms/BacklogEditDialog'
 import {Switcher} from '@/02_molecules/Switcher'
 import {useBacklog} from '@/hooks/backlog'
 import {backlogItems} from '@/_data/'
+
+const Toolbar = styled('div')`
+  text-align: right;
+`
 
 export async function getStaticProps() {
   return {
@@ -23,7 +28,9 @@ type Props = {
 }
 export default function Home({items}:Props) {
   const [active, setActive] = useState(0)
-  const {initBaclkigItems} = useBacklog()
+  const {initBaclkigItems, backlog} = useBacklog()
+  const blob = useMemo(() => new Blob([JSON.stringify(backlog, null, 2)], {type: 'application/json'}), [backlog])
+
   useEffect(() => {
     initBaclkigItems(items)
   }, [items, initBaclkigItems])
@@ -41,6 +48,9 @@ export default function Home({items}:Props) {
         active    = {active}        // 選択番号
         setActive = {setActive}     // 選択番号変更セッター
       />
+      <Toolbar>
+        [<a download="backlog.json" href={URL.createObjectURL(blob)}>Download</a>]
+      </Toolbar>
       {active === 0 && <Planning />}
       {active === 1 && <Kanban />}
       {active === 2 && <h1>ユーザーストーリーマップ</h1>}

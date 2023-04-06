@@ -107,6 +107,7 @@ export const useBacklog = () => {
 
   return {
     // バックログ管理
+    backlog,
     pgs,
     sgs,
     pbl,
