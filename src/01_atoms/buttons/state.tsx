@@ -1,12 +1,12 @@
-import { GrCaretNext } from 'react-icons/gr'
+import {GrCaretNext} from 'react-icons/gr'
 
 type Props = {
-  tips: string;
-  handleClick: () => void;
-  disabled?: boolean;
+  tips:string;
+  handleClick:() => void;
+  disabled?:boolean;
 };
 
-export function NextButton({ tips, handleClick, disabled = false }: Props) {
+export function NextButton({tips, handleClick, disabled = false}:Props) {
   return <>
     {disabled ?
       <GrCaretNext

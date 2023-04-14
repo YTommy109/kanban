@@ -7,6 +7,17 @@
     "quotes": ["error", "single"],
     "semi": ["error", "never", {"beforeStatementContinuationChars": "never"}],
     "no-console": ["warn", { "allow": ["warn", "error"] }],
-    "@typescript-eslint/no-unused-vars": ["error"]
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "no-multi-spaces":                                  "off",
+    "key-spacing": "off",
+    "@typescript-eslint/key-spacing": "off",
+    "@typescript-eslint/consistent-type-definitions":   "off",
+    "@typescript-eslint/type-annotation-spacing":       ["error", { "before": false, "after": false, "overrides": { "arrow": { "before": true, "after": true } } }],
+    "@typescript-eslint/object-curly-spacing":          ["error", "never"],
+    "@typescript-eslint/restrict-template-expressions": "off",
+    "@typescript-eslint/space-infix-ops":               "off",
+    "react/react-in-jsx-scope":                         "off",
+    "react-hooks/rules-of-hooks":                       "error",
+    "react-hooks/exhaustive-deps":                      "warn"
   }
 }

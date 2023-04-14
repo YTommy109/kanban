@@ -1,11 +1,11 @@
-import { useMemo } from 'react'
-import { Lane2_22rem } from '@/04_templates/Lane'
-import { KanbanBody } from '@/03_organisms/KanbanBody'
-import { ItemDetail } from '@/02_molecules/ItemDetail'
-import { useBacklog } from '@/hooks/backlog'
+import {useMemo} from 'react'
+import {Lane2_22rem} from '@/04_templates/Lane'
+import {KanbanBody} from '@/03_organisms/KanbanBody'
+import {ItemDetail} from '@/02_molecules/ItemDetail'
+import {useBacklog} from '@/hooks/backlog'
 
 export function Kanban() {
-  const { pgs, sgs, pbl, sbl, getFocusItem } = useBacklog()
+  const {pgs, sgs, pbl, sbl, getFocusItem} = useBacklog()
   const item = useMemo(() => getFocusItem(), [getFocusItem])
 
 return <>

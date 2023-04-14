@@ -1,10 +1,10 @@
-import { useRef, useEffect, useState } from 'react'
-import { styled } from 'goober'
-import { FaWindowClose } from 'react-icons/fa'
-import { BacklogItemForm } from '@/03_organisms/forms/BacklogItem'
-import { useDialog } from '@/hooks/useDialog'
-import { useBacklog } from '@/hooks/backlog'
-import { YesNoButtons } from '@/02_molecules/forms/YesNoButton'
+import {useRef, useEffect, useState} from 'react'
+import {styled} from 'goober'
+import {FaWindowClose} from 'react-icons/fa'
+import {BacklogItemForm} from '@/03_organisms/forms/BacklogItem'
+import {useDialog} from '@/hooks/useDialog'
+import {useBacklog} from '@/hooks/backlog'
+import {YesNoButtons} from '@/02_molecules/forms/YesNoButton'
 
 const Div = styled('div')`
   width:        30rem;
@@ -25,7 +25,7 @@ const dummyItem:BacklogItem = {
 
 export function BacklogEditDialog() {
   const ref = useRef<HTMLDialogElement>(null)
-  const { isOpen, close } = useDialog()
+  const {isOpen, close} = useDialog()
   const {getFocusItem, updateBacklogItem} = useBacklog()
   const [item, setItem] = useState<BacklogItem>(dummyItem)
 

@@ -1,4 +1,4 @@
-import { TextBox } from '@/01_atoms/forms'
+import {TextBox} from '@/01_atoms/forms'
 
 /**
  * 配列の個々の編集
@@ -10,10 +10,10 @@ import { TextBox } from '@/01_atoms/forms'
 type Props = {
   title:string
   items:string[]
-  handleChangeAt:(_i:number, _v:string)=>void
+  handleChangeAt:(_i:number, _v:string) => void
   placeholder?:string
 }
-export function ListEditor({ title, items, handleChangeAt, placeholder }: Props) {
+export function ListEditor({title, items, handleChangeAt, placeholder}:Props) {
   return <>
     <h2>{title}</h2>
     <ul>

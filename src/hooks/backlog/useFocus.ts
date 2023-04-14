@@ -1,5 +1,5 @@
-import { useCallback } from 'react'
-import { atom, useRecoilState } from 'recoil'
+import {useCallback} from 'react'
+import {atom, useRecoilState} from 'recoil'
 
 // フォーカスされてるアイテムの管理
 const focusItemIdStore = atom<Record<ItemType, string | null>>({
@@ -22,8 +22,8 @@ export const useFocus = () => {
   const [focusItemId, setFocusItemId] = useRecoilState(focusItemIdStore)
   const [focusLane, setFocusLane] = useRecoilState(focusLaneStore)
 
-  const changeFocusItem = useCallback((id: string | null, itemType: ItemType) => {
-    setFocusItemId((cur) => ({ ...cur, [itemType]: id }))
+  const changeFocusItem = useCallback((id:string | null, itemType:ItemType) => {
+    setFocusItemId((cur) => ({...cur, [itemType]: id}))
     if (id !== null) setFocusLane(() => itemType)
   }, [setFocusItemId, setFocusLane])
 

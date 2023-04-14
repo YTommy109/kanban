@@ -1,4 +1,4 @@
-import { extractCss } from 'goober'
+import {extractCss} from 'goober'
 import NextDocument, {
   DocumentContext,
   Head,
@@ -8,14 +8,14 @@ import NextDocument, {
 } from 'next/document'
 
 type Props = {
-  css: string
+  css:string
 }
 
 class Document extends NextDocument<Props> {
-  static async getInitialProps({ renderPage }: DocumentContext) {
+  static async getInitialProps({renderPage}:DocumentContext) {
     const page = await renderPage()
     const css = extractCss()
-    return { ...page, css }
+    return {...page, css}
   }
 
   render() {
@@ -25,7 +25,7 @@ class Document extends NextDocument<Props> {
           <style
             id={'_goober'}
             // And defined it in here
-            dangerouslySetInnerHTML={{ __html: ' ' + this.props.css }}
+            dangerouslySetInnerHTML={{__html: ' ' + this.props.css}}
           />
         </Head>
         <body>

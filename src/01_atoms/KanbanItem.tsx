@@ -1,8 +1,8 @@
-import { FC, useMemo } from 'react'
-import { styled } from 'goober'
-import { useBacklog, useFocus } from '@/hooks/backlog'
-import { useDialog } from '@/hooks/useDialog'
-import { NextButton } from '@/01_atoms/buttons/state'
+import {FC, useMemo} from 'react'
+import {styled} from 'goober'
+import {useBacklog, useFocus} from '@/hooks/backlog'
+import {useDialog} from '@/hooks/useDialog'
+import {NextButton} from '@/01_atoms/buttons/state'
 
 const Li = styled('li')`
   color:                black;
@@ -22,21 +22,21 @@ const Li = styled('li')`
 `
 
 type Props = {
-  item: BacklogItem;
-  handleClick?: () => void;
+  item:BacklogItem;
+  handleClick?:() => void;
 };
 
-export const KanbanItem: FC<Props> = ({ item, handleClick }) =>
+export const KanbanItem:FC<Props> = ({item, handleClick}) =>
   <Li key={item.id} className="item" onClick={handleClick}>{item.title}</Li>
 
 type Props2 = {
-  item: BacklogItem;
+  item:BacklogItem;
 };
 
-export function KanbanItem2({ item }: Props2) {
-  const { changeNextState } = useBacklog()
-  const { focusItemId, changeFocusItem, focusLane } = useFocus()
-  const { open } = useDialog()
+export function KanbanItem2({item}:Props2) {
+  const {changeNextState} = useBacklog()
+  const {focusItemId, changeFocusItem, focusLane} = useFocus()
+  const {open} = useDialog()
   const className = useMemo(() => {
     if (focusItemId[item.itemType] !== item.id) return 'item'
     return item.itemType === focusLane ? 'item focus' : 'item pick'

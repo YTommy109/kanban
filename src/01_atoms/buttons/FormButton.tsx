@@ -1,4 +1,4 @@
-import { styled } from 'goober'
+import {styled} from 'goober'
 
 const Button = styled('button')`
   background-color:   ghostwhite;

@@ -1,5 +1,5 @@
-import { styled } from 'goober'
-import { FormButton } from '@/01_atoms/buttons'
+import {styled} from 'goober'
+import {FormButton} from '@/01_atoms/buttons'
 
 const Div = styled('div')`
   display:                grid;

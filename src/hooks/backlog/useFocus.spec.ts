@@ -1,6 +1,6 @@
-import { RecoilRoot } from 'recoil'
-import { act, renderHook } from '@testing-library/react'
-import { useFocus } from './useFocus'
+import {RecoilRoot} from 'recoil'
+import {act, renderHook} from '@testing-library/react'
+import {useFocus} from './useFocus'
 
 describe('', () => {
   it('初期状態は null である', () => {

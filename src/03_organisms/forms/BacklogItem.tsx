@@ -1,7 +1,7 @@
-import { Dispatch, SetStateAction } from 'react'
-import { styled } from 'goober'
-import { LabelTextArea, LabelText } from '@/02_molecules/forms'
-import { ListEditor } from '../../02_molecules/forms/ListEditor'
+import {Dispatch, SetStateAction} from 'react'
+import {styled} from 'goober'
+import {LabelTextArea, LabelText} from '@/02_molecules/forms'
+import {ListEditor} from '../../02_molecules/forms/ListEditor'
 
 const Form = styled('form')`
   width:          100%;
@@ -25,13 +25,13 @@ type Props = {
   item:BacklogItem
   setItem:Dispatch<SetStateAction<BacklogItem>>
 }
-export function BacklogItemForm({item, setItem}: Props) {
+export function BacklogItemForm({item, setItem}:Props) {
   /**
    * DoD リストを更新する
    * @param index 対象のインデックス
    * @param value 書き換える内容
    */
-  const updateDod = (index: number, value: string) => {
+  const updateDod = (index:number, value:string) => {
     setItem((cur) => cur && ({
       ...cur,
       dod: cur.dod.map((it, idx) => idx === index
@@ -49,7 +49,7 @@ export function BacklogItemForm({item, setItem}: Props) {
           <LabelText
             title           = "タイトル"
             value           = {item.title ?? ''}
-            handleChange    = {(value) => setItem((cur) => cur && ({ ...cur, title: value }))}
+            handleChange    = {(value) => setItem((cur) => cur && ({...cur, title: value}))}
           />
           <ListEditor
             title           = '成果物 (完了状態)'
@@ -61,7 +61,7 @@ export function BacklogItemForm({item, setItem}: Props) {
             title           = "説明"
             value           = {item.description ?? ''}
             rows            = {10}
-            handleChange    = {(e) => setItem((cur) => cur && ({ ...cur, description: e.target.value }))}
+            handleChange    = {(e) => setItem((cur) => cur && ({...cur, description: e.target.value}))}
           />
         </div>
       </fieldset>

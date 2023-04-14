@@ -1,6 +1,6 @@
-import { styled } from 'goober'
-import { Lane3 } from '@/04_templates/Lane'
-import { KanbanLane } from '@/02_molecules/KanbanLane'
+import {styled} from 'goober'
+import {Lane3} from '@/04_templates/Lane'
+import {KanbanLane} from '@/02_molecules/KanbanLane'
 
 const Details = styled('details')`
   summary {
@@ -10,11 +10,11 @@ const Details = styled('details')`
 `
 
 type Props = {
-  data: BacklogItem[];
-  banner: string;
+  data:BacklogItem[];
+  banner:string;
 };
 
-export function KanbanBody({ data, banner }: Props) {
+export function KanbanBody({data, banner}:Props) {
   return <Details open>
     <summary>{banner}</summary>
     <Lane3>

@@ -1,8 +1,8 @@
-import { styled } from 'goober'
-import { BacklogLane } from '@/04_templates/Lane'
-import { KanbanItem2 } from '@/01_atoms/KanbanItem'
-import { AddButton } from '@/01_atoms/buttons'
-import { useBacklog, useFocus } from '@/hooks/backlog'
+import {styled} from 'goober'
+import {BacklogLane} from '@/04_templates/Lane'
+import {KanbanItem2} from '@/01_atoms/KanbanItem'
+import {AddButton} from '@/01_atoms/buttons'
+import {useBacklog, useFocus} from '@/hooks/backlog'
 
 const Div = styled('div')`
   display:        grid;
@@ -14,7 +14,7 @@ const Div = styled('div')`
   }
 `
 
-const PARENT: Record<ItemType, ItemType> = {
+const PARENT:Record<ItemType, ItemType> = {
   'SBI': 'PBI',
   'PBI': 'SGI',
   'SGI': 'PGI',
@@ -22,14 +22,14 @@ const PARENT: Record<ItemType, ItemType> = {
 }
 
 type Props = {
-  title: string;          // レーンタイトル
-  data: BacklogItem[];    // バックログアイテムリスト
-  itemType: ItemType;     // バックログアイテムの種類 & レーンの種類
+  title:string;          // レーンタイトル
+  data:BacklogItem[];    // バックログアイテムリスト
+  itemType:ItemType;     // バックログアイテムの種類 & レーンの種類
 };
 
-export function PlanningLane({ title, data, itemType }: Props) {
-  const { addBacklogItem } = useBacklog()
-  const { focusItemId: focusItem } = useFocus()
+export function PlanningLane({title, data, itemType}:Props) {
+  const {addBacklogItem} = useBacklog()
+  const {focusItemId: focusItem} = useFocus()
   return <>
     <BacklogLane title={title}>
       <Div>

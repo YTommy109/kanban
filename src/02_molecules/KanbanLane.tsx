@@ -1,6 +1,6 @@
-import { styled } from 'goober'
-import { KanbanItem2 } from '@/01_atoms/KanbanItem'
-import { BacklogLane } from '@/04_templates/Lane'
+import {styled} from 'goober'
+import {KanbanItem2} from '@/01_atoms/KanbanItem'
+import {BacklogLane} from '@/04_templates/Lane'
 
 const Ul = styled('ul')`
     display:          grid;
@@ -8,11 +8,11 @@ const Ul = styled('ul')`
 `
 
 type Props = {
-  title: string;
-  data: BacklogItem[];
+  title:string;
+  data:BacklogItem[];
 };
 
-export function KanbanLane({ title, data }: Props) {
+export function KanbanLane({title, data}:Props) {
   return <>
     <BacklogLane title={title}>
       <Ul>

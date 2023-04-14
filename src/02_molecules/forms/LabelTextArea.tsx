@@ -1,13 +1,13 @@
-import { useId, ChangeEvent } from 'react'
+import {useId, ChangeEvent} from 'react'
 
 type Props = {
-  title:        string;
-  value:        string;
-  handleChange:(e:ChangeEvent<HTMLTextAreaElement>)=>void;
-  rows?:        number;
+  title:string;
+  value:string;
+  handleChange:(e:ChangeEvent<HTMLTextAreaElement>) => void;
+  rows?:number;
 }
 
-export function LabelTextArea({ title, value, handleChange, rows = 5 }: Props) {
+export function LabelTextArea({title, value, handleChange, rows = 5}:Props) {
   const id = useId()
 
   return <>

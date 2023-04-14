@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react'
+import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { FormButton } from './FormButton'
+import {FormButton} from './FormButton'
 
 describe('FormButton について', () => {
   const setup = (isPrimary=false) => {

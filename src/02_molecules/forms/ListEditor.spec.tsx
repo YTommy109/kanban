@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react'
-import { ListEditor } from './ListEditor'
+import {render, screen} from '@testing-library/react'
+import {ListEditor} from './ListEditor'
 
 describe('ListEditor について', () => {
   const mockFn = jest.fn()

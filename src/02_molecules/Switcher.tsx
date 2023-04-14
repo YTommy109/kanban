@@ -1,4 +1,4 @@
-import { styled } from 'goober'
+import {styled} from 'goober'
 
 const Ul = styled('ul')`
   width:                  15rem;
@@ -28,12 +28,12 @@ const Ul = styled('ul')`
 `
 
 type Props = {
-  items: string[];                // メニューリスト
-  active: number;                 // 現在選択されてる番号
-  setActive: (v: number) => void  // 選択を変更するセッター
+  items:string[];                // メニューリスト
+  active:number;                 // 現在選択されてる番号
+  setActive:(v:number) => void  // 選択を変更するセッター
 }
 
-export function Switcher({ items, active, setActive }: Props) {
+export function Switcher({items, active, setActive}:Props) {
   return <Ul>
     {items.map((it, idx) =>
       <li

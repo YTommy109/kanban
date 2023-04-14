@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react'
+import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { AddButton } from './add'
+import {AddButton} from './add'
 
 describe('AddButton について', () => {
   const setup = (disabled=false) => {

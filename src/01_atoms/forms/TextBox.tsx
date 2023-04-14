@@ -1,4 +1,4 @@
-import { styled } from 'goober'
+import {styled} from 'goober'
 
 const Input = styled('input')`
   border:                 none;
@@ -13,7 +13,7 @@ const Input = styled('input')`
 type Props = {
   value:string
   placeholder?:string
-  handleChange:(_v:string)=>void
+  handleChange:(_v:string) => void
 }
 
 export function TextBox({value, placeholder, handleChange}:Props) {

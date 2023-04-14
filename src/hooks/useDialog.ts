@@ -1,4 +1,4 @@
-import { atom, useRecoilState } from 'recoil'
+import {atom, useRecoilState} from 'recoil'
 
 const dialogStore = atom<boolean>({
   key: 'dialogStore',

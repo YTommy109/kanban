@@ -1,9 +1,9 @@
 import '@testing-library/jest-dom'
-import { render, screen, fireEvent } from '@testing-library/react'
-import { KanbanItem } from './KanbanItem'
+import {render, screen, fireEvent} from '@testing-library/react'
+import {KanbanItem} from './KanbanItem'
 
 describe('KanbanItem', () => {
-  const mockItem:BacklogItem = { id: '1', title: 'test item', dod: [], state: 'ToDo', order: 1, created_at: '' }
+  const mockItem:BacklogItem = {id: '1', title: 'test item', dod: [], state: 'ToDo', order: 1, created_at: ''}
   const mockHandleClick = jest.fn()
 
   afterEach(() => {

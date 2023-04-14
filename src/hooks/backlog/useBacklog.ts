@@ -1,7 +1,7 @@
-import { useCallback } from 'react'
-import { atom, selector, useRecoilState, useRecoilValue } from 'recoil'
-import { v4 as uuidv4 } from 'uuid'
-import { useFocus } from './useFocus'
+import {useCallback} from 'react'
+import {atom, selector, useRecoilState, useRecoilValue} from 'recoil'
+import {v4 as uuidv4} from 'uuid'
+import {useFocus} from './useFocus'
 
 const backlogStore = atom<BacklogItem[]>({
   key: 'backlogStore',
@@ -10,31 +10,31 @@ const backlogStore = atom<BacklogItem[]>({
 
 const pgsStore = selector({
   key: 'pgsStore',
-  get: ({ get }) => get(backlogStore).filter((it) => it.itemType === 'PGI')
+  get: ({get}) => get(backlogStore).filter((it) => it.itemType === 'PGI')
 })
 
 const sgsStore = selector({
   key: 'sgsStore',
-  get: ({ get }) => get(backlogStore).filter((it) => it.itemType === 'SGI')
+  get: ({get}) => get(backlogStore).filter((it) => it.itemType === 'SGI')
 })
 
 const pblStore = selector({
   key: 'pblStore',
-  get: ({ get }) => get(backlogStore).filter((it) => it.itemType === 'PBI')
+  get: ({get}) => get(backlogStore).filter((it) => it.itemType === 'PBI')
 })
 
 const sblStore = selector({
   key: 'sblStore',
-  get: ({ get }) => get(backlogStore).filter((it) => it.itemType === 'SBI')
+  get: ({get}) => get(backlogStore).filter((it) => it.itemType === 'SBI')
 })
 
-const NEXT_STATE: Record<ItemState, ItemState> = {
+const NEXT_STATE:Record<ItemState, ItemState> = {
   'ToDo': 'Doing',
   'Doing': 'Done',
   'Done': 'Done'
 }
 
-const newItem: BacklogItem = {
+const newItem:BacklogItem = {
   'id': '',
   'itemType': 'PBI',
   'title': '名称未設定',
@@ -51,7 +51,7 @@ export const useBacklog = () => {
   const sgs = useRecoilValue(sgsStore)
   const pbl = useRecoilValue(pblStore)
   const sbl = useRecoilValue(sblStore)
-  const { focusLane, focusItemId } = useFocus()
+  const {focusLane, focusItemId} = useFocus()
 
 
   /** バックログアイテムを初期化する
@@ -66,15 +66,15 @@ export const useBacklog = () => {
    * @param id 対象アイテムの ID
    */
   const changeNextState = useCallback((id:string) =>
-    setBacklog((cur) => cur.map(it => it.id === id ? { ...it, state: NEXT_STATE[it.state] } : it))
+    setBacklog((cur) => cur.map(it => it.id === id ? {...it, state: NEXT_STATE[it.state]} : it))
     , [setBacklog])
 
   /**
    * バックログアイテムの追加
    * @param itemType アイテムの種類
    */
-  const addBacklogItem = useCallback((itemType: ItemType) => {
-    let parentId: string | null = null
+  const addBacklogItem = useCallback((itemType:ItemType) => {
+    let parentId:string | null = null
     if (itemType === 'SBI') { parentId = focusItemId['PBI'] }
     if (itemType === 'PBI') { parentId = focusItemId['SGI'] }
     if (itemType === 'SGI') { parentId = focusItemId['PGI'] }
@@ -90,7 +90,7 @@ export const useBacklog = () => {
   /**
    * フォーカスアイテムの取得
    */
-  const getFocusItem = useCallback((): BacklogItem | null => {
+  const getFocusItem = useCallback(():BacklogItem | null => {
     if (focusLane === null) return null
     const result = backlog.filter(it => it.id === focusItemId[focusLane]).pop()
     return result ?? null

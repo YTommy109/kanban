@@ -1,4 +1,4 @@
-import { styled } from 'goober'
+import {styled} from 'goober'
 
 export const Lane2_22rem = styled('div')`
   display:                grid;
@@ -28,11 +28,11 @@ const Section = styled('section')`
 `
 
 type Props = {
-  title: string;
-  children: React.ReactNode;
+  title:string;
+  children:React.ReactNode;
 };
 
-export function BacklogLane({ title, children }: Props) {
+export function BacklogLane({title, children}:Props) {
   return <>
     <Section>
       <h2>{title}</h2>

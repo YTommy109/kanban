@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react'
+import {useEffect, useState} from 'react'
 import Head from 'next/head'
-import { Main } from '@/04_templates/MainPanel'
-import { Kanban } from '@/03_organisms/Kanban'
-import { Planning } from '@/03_organisms/Planning'
-import { BacklogEditDialog } from '@/03_organisms/BacklogEditDialog'
-import { Switcher } from '@/02_molecules/Switcher'
-import { useBacklog } from '@/hooks/backlog'
-import { backlogItems } from '@/_data/'
+import {Main} from '@/04_templates/MainPanel'
+import {Kanban} from '@/03_organisms/Kanban'
+import {Planning} from '@/03_organisms/Planning'
+import {BacklogEditDialog} from '@/03_organisms/BacklogEditDialog'
+import {Switcher} from '@/02_molecules/Switcher'
+import {useBacklog} from '@/hooks/backlog'
+import {backlogItems} from '@/_data/'
 
 export async function getStaticProps() {
   return {
@@ -23,7 +23,7 @@ type Props = {
 }
 export default function Home({items}:Props) {
   const [active, setActive] = useState(0)
-  const { initBaclkigItems } = useBacklog()
+  const {initBaclkigItems} = useBacklog()
   useEffect(() => {
     initBaclkigItems(items)
   }, [items, initBaclkigItems])

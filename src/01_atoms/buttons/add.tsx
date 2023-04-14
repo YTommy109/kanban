@@ -1,12 +1,12 @@
-import { BiAddToQueue } from 'react-icons/bi'
+import {BiAddToQueue} from 'react-icons/bi'
 
 type Props = {
-  tips: string;
-  handleClick: () => void;
-  disabled?: boolean;
+  tips:string;
+  handleClick:() => void;
+  disabled?:boolean;
 };
 
-export function AddButton({ tips, handleClick, disabled = false }: Props) {
+export function AddButton({tips, handleClick, disabled = false}:Props) {
   return <>
     {disabled ?
       <BiAddToQueue

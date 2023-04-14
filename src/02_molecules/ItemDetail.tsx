@@ -1,4 +1,4 @@
-import { styled } from 'goober'
+import {styled} from 'goober'
 import dayjs from 'dayjs'
 
 const Section = styled('section')`
@@ -32,9 +32,9 @@ const Section = styled('section')`
 `
 
 type Props = {
-  item: BacklogItem;
+  item:BacklogItem;
 };
-export function ItemDetail({ item }:Props) {
+export function ItemDetail({item}:Props) {
   return <Section>
     <article>
       <h2>タイトル</h2>
