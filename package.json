@@ -31,7 +31,7 @@
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.11",
     "@types/uuid": "^9.0.1",
-    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.57.1",
     "eslint": "^8.36.0",
     "eslint-config-next": "^13.3.0",
